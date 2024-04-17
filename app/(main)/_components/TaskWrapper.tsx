@@ -132,11 +132,15 @@ function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
               <Ellipsis height="16" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="min-w-[820px] h-[780px] top-[55px] left-[35%]">
+          <DialogContent className="min-w-[820px] h-[780px] top-[55px] left-[35%] shadow-4">
             <DialogHeader>
               <DialogTitle className="text-base">Lista de tareas 1</DialogTitle>
-              <TaskModal/>
-              <DialogFooter>Guardar</DialogFooter>
+              <TaskModal
+                task={task}
+                EditTask={EditTask}
+                DeleteTask={DeleteTask}
+                CompleteTask={CompleteTask}
+              />
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -152,7 +156,7 @@ function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
         {task.duration && (
           <Badge variant="ghost">
             <IconStopWatch height="12" />
-            {task.duration} min
+            <p>{task.duration}</p>
           </Badge>
         )}
 

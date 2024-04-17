@@ -24,6 +24,7 @@ const config = {
         '1':'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
         '2':'rgba(0, 0, 0, 0.08) 0px 4px 12px;',
         '3':'rgba(0, 0, 0, 0.08) 0px 3px 6px;',
+        '4':'rgba(0, 0, 0, 0.08) 0px 64px 128px;',
       },
       colors: {
         "main-1": "#0A6BFF", 

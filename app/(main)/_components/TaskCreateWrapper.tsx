@@ -51,6 +51,10 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
     });
   };
 
+  const changeName = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNewTask({ ...newTask, name: event.target.value.trim() });
+  };
+
   return (
     <Wrapper
       className="flex-col bg-transparent  text-white border-main-2 border "
@@ -64,7 +68,7 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
         <textarea
           defaultValue={newTask.name}
           placeholder="Nombre de la tarea"
-          onChange={(e) => setNewTask({ ...newTask, name: e.target.value.trim() })}
+          onChange={changeName}
           className=" flex-1 text-sm font-normal bg-transparent text-slate-900 placeholder:text-slate-400 dark:text-white resize-none w-full focus:outline-none active:outline-none h-6 pt-[2px]"></textarea>
       </div>
 
@@ -106,14 +110,14 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
             variant="none"
             size={"i"}
             className="border border-main-2 text-main-2">
-            <X height="16"/>
+            <X height="16" />
           </Button>
           <Button
             onClick={() => AddTask(newTask)}
             variant="none"
             size={"i"}
             className="bg-main-2 hover:bg-main-2 text-main-superlight w-16 text-sm">
-            <SendHorizontal height="16"/>
+            <SendHorizontal height="16" />
           </Button>
         </div>
       </div>

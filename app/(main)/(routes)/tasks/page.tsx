@@ -9,14 +9,9 @@ import TaskCreateWrapper from "../../_components/TaskCreateWrapper";
 // Utilities
 import { cn } from "@/lib/utils";
 // Icons
-import {
-  ChevronRight,
-  Ellipsis,
-  Plus,
-  Settings2,
-} from "lucide-react";
+import { ChevronRight, Ellipsis, Plus, Settings2 } from "lucide-react";
 
-// Interface 
+// Interface
 interface Task {
   id: number;
   name: string;
@@ -33,8 +28,8 @@ const InititalTasks: Task[] = [
     id: 1,
     name: "Tarea 1",
     description: "Descripción de la tarea 1. ",
-    deadline: "25 Abr",
-    duration: "120",
+    deadline: "2024-07-10",
+    duration: "00:20:30",
     priority: "A",
     status: false,
   },
@@ -43,14 +38,15 @@ const InititalTasks: Task[] = [
     name: "Tarea 2",
     description: "",
     deadline: "",
-    duration: "60",
+    duration: "00:01:30",
     priority: "B",
     status: true,
   },
   {
     id: 3,
     name: "Tarea 3",
-    deadline: "23 Abr",
+    deadline: "2024-07-10",
+    duration: "00:20:30",
     priority: "C",
     status: false,
   },
@@ -58,8 +54,8 @@ const InititalTasks: Task[] = [
     id: 4,
     name: "Tarea 4",
     description: "Descripción de la tarea 2",
-    deadline: "22 Abr",
-    duration: "60",
+    deadline: " 2024-07-07",
+    duration: "00:30:00",
     priority: "D",
     status: true,
   },
@@ -146,11 +142,27 @@ const tasksPage: React.FC = () => {
 
   // ADD DATA
 
+  // Función Global
+
+  const UpdateAnyData = (id: number, type: string) => {
+   /*  setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, [type]: e?.target.value } : task
+      )
+    ) */
+  };
+
   // Función para añadir DURACIÓN a una tarea
 
   const AddDuration = (id: number) => {
     const idd = tasks.filter((task) => task.id === id);
     console.log(idd);
+
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, duration: idd[0].duration } : task
+      )
+    );
   };
 
   // Función para anadir PRIORIDAD a una tarea
