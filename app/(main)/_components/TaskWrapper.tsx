@@ -4,10 +4,28 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import Wrapper from "./Wrapper";
 import { cn } from "@/lib/utils";
-import { Calendar, Circle, CircleCheck, Flag } from "lucide-react";
+import {
+  Calendar,
+  Circle,
+  CircleCheck,
+  Ellipsis,
+  Flag,
+  Trash,
+} from "lucide-react";
 import IconCalendar from "../Icons/FeaturesIcons/IconCalendar.jsx";
 import IconFlag from "../Icons/FeaturesIcons/IconFlag";
 import IconStopWatch from "../Icons/FeaturesIcons/IconStopWatch";
+import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import TaskModal from "./TaskModal";
 
 interface Task {
   id: number;
@@ -24,122 +42,135 @@ type TaskProps = {
   task: Task;
   // props: any;
   onClick?: () => void;
+  CompleteTask: (id: number) => void;
+  DeleteTask: (id: number) => void;
+  EditTask: (id: number) => void;
 };
 
-function TaskWrapper({ task, onClick }: TaskProps) {
+function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
   let color = "";
   let colour = ``;
 
   switch (task.priority) {
     case "A":
-      color = " stroke-[#0fbcf9] fill-[#0fbcf9]/[0.05]";
+      color = " stroke-[#0fbcf9] fill-[#0fbcf9]/[0.05] hover:fill-[#0fbcf9]";
       colour = "border-[#0fbcf9] bg-[#0fbcf9]/[0.02]";
 
       break;
     case "B":
-      color = " stroke-main-2 fill-main-2/[0.05]";
+      color = " stroke-main-2 fill-main-2/[0.05] hover:fill-main-2";
       colour = "border-main-2 bg-main-2/[0.02]";
 
       break;
     case "C":
-      color = "  stroke-[#005bc5] fill-[#005bc5]/[0.05]";
+      color = "  stroke-[#005bc5] fill-[#005bc5]/[0.05] hover:fill-[#005bc5]";
       colour = "border-[#005bc5] bg-[#005bc5]/[0.02]";
 
       break;
     case "D":
-      color = " stroke-blue-800 fill-blue-800/[0.05]";
+      color = " stroke-slate-500 fill-slate-500/[0.05] hover:fill-slate-500";
       colour = "border-[#0fbcf9] bg-[#0fbcf9]/[0.02]";
 
       break;
     default:
-      color = " stroke-blue-800 fill-blue-800/[0.05]";
+      color = " stroke-slate-500 fill-slate-500/[0.05] hover:fill-slate-500";
       colour = "border-[#0fbcf9] bg-[#0fbcf9]/[0.02]";
       break;
   }
 
   return (
-    <>
-      <Wrapper color={colour} className="flex-col">
-        {/* Header */}
+    <Wrapper className="flex-col bg-white border-0 focus:ring-slate-950">
+      {/* Header */}
 
-        <div className="flex items-center">
-          {/* Status */}
-          <Button
-            variant={"ghost"}
-            size={"i"}
-            className={`stroke-[.5]  ${color} text-4xl `}>
-            {task.status ? (
-              <CircleCheck className={`stroke-[2]  ${color} `} />
-            ) : (
-              <Circle className={`stroke-[2]  ${color} `} />
-            )}
-          </Button>
-
-          {/* Name */}
+      <div className="flex items-center">
+        {/* Status */}
+        <Button
+          variant={"ghost"}
+          size={"i"}
+          className={`stroke-[.5] hover:bg-transparent  ${color}`}>
           {task.status ? (
-            <h5
-              className={cn(
-                "flex-1 text-sm font-normal text-slate-700 dark:text-white pl-1 ",
-                task.status && "line-through text-slate-400 dark:text-slate-200"
-              )}>
-              {task.name}
-            </h5>
+            <CircleCheck
+              className={`stroke-[2]  ${color}  `}
+              height={18}
+              onClick={() => CompleteTask(task.id)}
+            />
           ) : (
-            <textarea
-              defaultValue={task.name}
-              placeholder="Añade una tarea"
-              className=" flex-1 text-sm font-normal bg-transparent text-slate-700 dark:text-white resize-none w-full focus:outline-none active:outline-none h-6 pt-[2px]"></textarea>
+            <Circle
+              className={`stroke-[2]  ${color} `}
+              height={18}
+              onClick={() => CompleteTask(task.id)}
+            />
           )}
+        </Button>
 
-          <Button
-            variant={"ghost"}
-            size={"i"}
-            className=" opacity-0 group-hover:opacity-100">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-three-dots "
-              viewBox="0 0 16 16">
-              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
-            </svg>
-          </Button>
-        </div>
+        {/* Name */}
 
-        {/* Descripción */}
-        <div className="">
-          <textarea
-            className="text-xs bg-transparent text-slate-700 dark:text-white resize-none w-full focus:outline-none active:outline-none h-5 pt-[2px] "
-            placeholder="Añade una descripción"
-            defaultValue={task.description}></textarea>
-        </div>
+        <h5
+          className={cn(
+            "flex-1 text-sm font-normal text-slate-700 dark:text-white pl-1 ",
+            task.status && "line-through text-slate-400 dark:text-slate-200"
+          )}>
+          {task.name}
+        </h5>
 
-        {/* Info */}
-        <div className="text-xs flex flex-row ">
-          {task.duration && (
-            <Button variant="ghost" size={"xs"} className="">
-              <IconStopWatch height="12" />
-              {task.duration} min
+        <Button
+          variant={"ghost"}
+          size={"i"}
+          className=" opacity-0 group-hover:opacity-100 z-50"
+          onClick={() => DeleteTask(task.id)}>
+          <Trash height={16} />
+        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button
+              variant={"ghost"}
+              size={"i"}
+              onClick={() => {
+                console.log(task.status);
+              }}
+              className=" opacity-0 group-hover:opacity-100 z-50">
+              <Ellipsis height="16" />
             </Button>
-          )}
+          </DialogTrigger>
+          <DialogContent className="min-w-[820px] h-[780px] top-[55px] left-[35%]">
+            <DialogHeader>
+              <DialogTitle className="text-base">Lista de tareas 1</DialogTitle>
+              <TaskModal/>
+              <DialogFooter>Guardar</DialogFooter>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
 
-          {task.deadline && (
-            <Button variant="ghost" size={"xs"} className=" text-xs ">
-              <IconCalendar height="12" />
-              <p>{task.deadline}</p>
-            </Button>
-          )}
+      {/* Descripción */}
+      <div className="">
+        <p className="text-xs  dark:text-white  ">{task.description}</p>
+      </div>
 
-          {task.priority !== "none" && (
-            <Button variant="ghost" size={"xs"} className="w-12">
-              <IconFlag height="12" />
-              <p>{task.priority}</p>
-            </Button>
-          )}
-        </div>
-      </Wrapper>
-    </>
+      {/* Info */}
+      <div className="text-xs flex flex-row ">
+        {task.duration && (
+          <Badge variant="ghost">
+            <IconStopWatch height="12" />
+            {task.duration} min
+          </Badge>
+        )}
+
+        {task.deadline && (
+          <Badge variant="ghost">
+            <IconCalendar height="12" />
+            <p>{task.deadline}</p>
+          </Badge>
+        )}
+
+        {task.priority !== "none" && (
+          <Badge variant="ghost">
+            <IconFlag height="12" />
+            <p>{task.priority}</p>
+          </Badge>
+        )}
+      </div>
+    </Wrapper>
   );
 }
 

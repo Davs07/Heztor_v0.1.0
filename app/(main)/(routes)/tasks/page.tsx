@@ -1,11 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+// Components
 import { Button } from "@/components/ui/button";
 import TaskWrapper from "../../_components/TaskWrapper";
 import TittleSection from "../../_components/TittleSection";
-import { Ellipsis, Settings2 } from "lucide-react";
+import TaskCreateWrapper from "../../_components/TaskCreateWrapper";
+// Utilities
+import { cn } from "@/lib/utils";
+// Icons
+import {
+  ChevronRight,
+  Ellipsis,
+  Plus,
+  Settings2,
+} from "lucide-react";
 
+// Interface 
 interface Task {
   id: number;
   name: string;
@@ -16,6 +27,7 @@ interface Task {
   status: boolean;
 }
 
+// Initial Tasks
 const InititalTasks: Task[] = [
   {
     id: 1,
@@ -29,123 +41,32 @@ const InititalTasks: Task[] = [
   {
     id: 2,
     name: "Tarea 2",
-    description: "Descripción de la tarea 2",
-    deadline: "22 Abr",
+    description: "",
+    deadline: "",
     duration: "60",
-    priority: "C",
-    status: false,
-  },
-  {
-    id: 30,
-    name: "Tarea 3",
-    deadline: "23 Abr",
     priority: "B",
-    status: false,
-  },
-  {
-    id: 23,
-    name: "Tarea 2",
-    description: "Descripción de la tarea 2",
-    deadline: "22 Abr",
-    duration: "60",
-    priority: "C",
     status: true,
   },
   {
     id: 3,
     name: "Tarea 3",
     deadline: "23 Abr",
-    priority: "B",
-    status: true,
-  },
-  {
-    id: 100,
-    name: "Tarea 4",
-    deadline: "23 Abr",
-    priority: "A",
-    status: true,
-  },
-  {
-    id: 4,
-    name: "Tarea 4",
-    description:
-      "Descripción de la tarea 4. lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    deadline: "25 Abr",
-    duration: "120",
-    priority: "A",
-    status: true,
-  },
-  {
-    id: 5,
-    name: "Tarea 5",
-    deadline: "22 Abr",
-    duration: "60",
-    priority: "D",
-    status: true,
-  },
-  {
-    id: 6,
-    name: "Tarea 6",
-    deadline: "23 Abr",
-    priority: "B",
-    status: false,
-  },
-  {
-    id: 7,
-    name: "Tarea 4",
-    description:
-      "Descripción de la tarea 4. lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    deadline: "25 Abr",
-    duration: "120",
-    priority: "A",
-    status: true,
-  },
-  {
-    id: 8,
-    name: "Tarea 5",
-    deadline: "22 Abr",
-    duration: "60",
-    priority: "none",
-    status: false,
-  },
-  {
-    id: 9,
-    name: "Tarea 6",
-    description: "Descripción de la tarea 6",
-    deadline: "23 Abr",
-    priority: "B",
-    status: true,
-  },
-  {
-    id: 10,
-    name: "Tarea 4",
-    description:
-      "Descripción de la tarea 4. lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    deadline: "25 Abr",
-    duration: "120",
     priority: "C",
     status: false,
   },
   {
-    id: 11,
-    name: "Tarea 5",
+    id: 4,
+    name: "Tarea 4",
+    description: "Descripción de la tarea 2",
     deadline: "22 Abr",
     duration: "60",
     priority: "D",
-    status: false,
-  },
-  {
-    id: 12,
-    name: "Tarea 6",
-    description: "Descripción de la tarea 6",
-    deadline: "23 Abr",
-    priority: "none",
     status: true,
   },
 ];
 
 const taskTmp: Task = {
-  id: 1000,
+  id: 1000e1000,
   name: "",
   description: "",
   status: false,
@@ -157,35 +78,91 @@ const tasksPage: React.FC = () => {
   const [tasks, setTasks] = useState(InititalTasks);
   const [taskTemp, setTaskTemp] = useState(taskTmp);
   const [isAdding, setIsAdding] = useState(false);
+  const [isShowingCompleteds, setIsShowingCompleteds] = useState(false);
 
-  // Función para añadir una tarea
-  // CREATE
-  const AddNewTask = () => {
-    setTasks([
-      ...tasks,
-      {
-        id: 100,
-        name: "",
-        description: "",
-        status: false,
-        deadline: "",
-        duration: "",
-        priority: "",
-      },
-    ]);
+  useEffect(() => {
+    console.log("-----------");
+    const completedTasks = tasks.filter((task) => task.status === true);
+    console.log("filter para tareas completadas", completedTasks);
+    const taskNames = tasks.map((task) => task.name);
+    console.log("map para mostrar los nombres de las tareas", taskNames);
+    const taskId = 5;
+    const taskById = tasks.find((task) => task.id === taskId);
+    console.log("find para mostrar las tareas por id", taskById);
+
+    const hasPendingTasks = tasks.some((task) => !task.status);
+    console.log("some para ver si hay tareas pendientes", hasPendingTasks);
+
+    const allTasksHavePriority = tasks.every((task) => task.priority);
+    console.log(
+      "every para ver si todas las tareas tienen prioridad",
+      allTasksHavePriority
+    );
+  }, [tasks]);
+
+  /* CRUD TAREA */
+
+  // Función para crear una tarea
+  const AddTask = (taskNew: Task) => {
+    setTasks([...tasks, taskNew]);
+    setIsAdding(false);
   };
 
   // Función para editar una tarea
   const EditTask = (id: number) => {
     const idd = tasks.filter((task) => task.id === id);
     console.log(idd);
-    console.log("xd")
-    // setTasks(tasks.find((task) => task.id === id));
   };
 
   // Función para borrar una tarea
   const DeleteTask = (id: number) => {
     setTasks(tasks.filter((t) => t.id !== id));
+    // console.log(tasks.filter((t) => t.id !== id));
+  };
+
+  // Función para cambiar el estado de una tarea
+  const CompleteTask = (id: number) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, status: !task.status } : task
+      )
+    );
+  };
+
+  // BUTTONS
+
+  const closeAdding = () => {
+    setIsAdding(false);
+    setTaskTemp(taskTmp);
+  };
+
+  const openAdding = () => {
+    setIsAdding(true);
+  };
+
+  const showCompleteds = () => {
+    setIsShowingCompleteds((prev) => !prev);
+  };
+
+  // ADD DATA
+
+  // Función para añadir DURACIÓN a una tarea
+
+  const AddDuration = (id: number) => {
+    const idd = tasks.filter((task) => task.id === id);
+    console.log(idd);
+  };
+
+  // Función para anadir PRIORIDAD a una tarea
+  const AddPriority = (id: number) => {
+    const idd = tasks.filter((task) => task.id === id);
+    console.log(idd);
+  };
+
+  // Función para anadir FECHA LÍMITE a una tarea
+  const AddDeadline = (id: number) => {
+    const idd = tasks.filter((task) => task.id === id);
+    console.log(idd);
   };
 
   return (
@@ -206,52 +183,57 @@ const tasksPage: React.FC = () => {
             <TaskWrapper
               key={task.id}
               task={task}
-onClick={() => EditTask(task.id)}
+              CompleteTask={CompleteTask}
+              DeleteTask={DeleteTask}
+              EditTask={EditTask}
             />
           ))}
 
         {isAdding ? (
-          <TaskWrapper task={taskTemp} />
+          <TaskCreateWrapper
+            task={taskTemp}
+            AddTask={AddTask}
+            closeAdding={closeAdding}
+          />
         ) : (
           <Button
             variant={"ghost"}
-            onClick={() => setIsAdding(true)}
+            onClick={openAdding}
             className="mt-1 rounded-2xl flex justify-center text-sm items-center text-main-extradark/50 gap-1 group hover:text-main-extradark/70">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-plus-lg"
-              viewBox="0 0 16 16">
-              <path
-                fillRule="evenodd"
-                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
-              />
-            </svg>
+            <Plus height={16} />
             <p>Añadir tarea</p>
           </Button>
         )}
-        <div className="text-sm font-semibold text-slate-500 items-center text-start flex flex-row my-2 gap-2 mt-32">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="12"
-            fill="currentColor"
-            className="bi bi-chevron-right rotate-90 transition-all duration-300 ease-in-out"
-            viewBox="0 0 16 16">
-            <path
-              fillRule="evenodd"
-              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+
+        {tasks.some((task) => task.status) && (
+          <div
+            className="text-sm group font-semibold cursor-pointer text-slate-500 hover:text-main-2 items-center  justify-start flex flex-row my-2 gap-2 mt-32"
+            onClick={showCompleteds}>
+            <div className="h-px w-full bg-main-extradark/30 group-hover:bg-main-2" />
+            <ChevronRight
+              height={16}
+              className={cn(
+                " min-w-4 transition-transform duration-300",
+                isShowingCompleteds && "rotate-90 "
+              )}
             />
-          </svg>
-          <h3>Completado</h3>
-        </div>
-        {tasks
-          .filter((task) => task.status)
-          .map((task) => (
-            <TaskWrapper key={task.id} task={task} />
-          ))}
+            <h3>Completado</h3>
+            <div className="h-px w-full bg-main-extradark/30 group-hover:bg-main-2" />
+          </div>
+        )}
+
+        {isShowingCompleteds &&
+          tasks
+            .filter((task) => task.status)
+            .map((task) => (
+              <TaskWrapper
+                key={task.id}
+                task={task}
+                CompleteTask={CompleteTask}
+                DeleteTask={DeleteTask}
+                EditTask={EditTask}
+              />
+            ))}
       </div>
     </>
   );
