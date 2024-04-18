@@ -12,7 +12,7 @@ const Logo = () => {
   return (
     <div className="md:flex items-center gap-x-2 ">
       <Image
-        src="/heztor5.svg"
+        src="/HeztorBlue.svg"
         alt="Logo"
         width="50"
         height="50"

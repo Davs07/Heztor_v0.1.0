@@ -5,6 +5,7 @@ import { ChevronsLeft, ChevronsRight, MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
+import SidebarOptions from "./SidebarOptions";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -33,9 +34,7 @@ export default function Sidebar() {
           <ChevronsLeft className="h-6 w-6" />
         </div>
 
-        <div>
-          <p>Action Items</p>
-        </div>
+        <SidebarOptions />
 
         <div
           onMouseDown={() => {}}

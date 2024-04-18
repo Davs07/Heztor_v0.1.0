@@ -34,7 +34,7 @@ const config = {
         "main-superlight":"#F4F6FF",
         "main-dark": "#12229D", 
         "main-extradark": "#050A30",
-        "main-superdark": "#000C2E",
+        "main-superdark": "#1A1B26",
         "main-hiperdark": "#000211",
 
 

@@ -148,13 +148,13 @@ function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
 
       {/* Descripción */}
       <div className="">
-        <p className="text-xs  dark:text-white  ">{task.description}</p>
+        <p className="text-xs  dark:text-main-extralight  ">{task.description}</p>
       </div>
 
       {/* Info */}
-      <div className="text-xs flex flex-row ">
+      <div className="text-xs flex flex-row  ">
         {task.duration && (
-          <Badge variant="ghost">
+          <Badge variant="ghost" >
             <IconStopWatch height="12" />
             <p>{task.duration}</p>
           </Badge>

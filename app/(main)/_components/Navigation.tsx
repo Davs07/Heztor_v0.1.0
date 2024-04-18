@@ -64,7 +64,7 @@ function Navigation({ Button }: { Button: any }) {
                 key={index}
                 variant="ghost"
                 size="sm"
-                className={`group hover:bg-[#E6ECFF] rounded-2xl ${
+                className={`group hover:bg-[#E6ECFF] rounded-xl ${
                   pathname === Menu.src
                     ? "  text-white hover:text-white bg-main-2 hover:bg-main-2 "
                     : ""
@@ -96,7 +96,7 @@ function Navigation({ Button }: { Button: any }) {
                 placeholder="Buscar"
                 type="text"
                 className={cn(
-                  "border-2 border-transparent bg-[#E6ECFF] pl-7 w-60 h-8  outline-none overflow-hidden  rounded-2xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
+                  "border-2 border-transparent bg-[#E6ECFF] pl-7 w-60 h-8  outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
                   isM && "w-4"
                 )}
               />
@@ -107,7 +107,7 @@ function Navigation({ Button }: { Button: any }) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={` hover:bg-[#E6ECFF] rounded-2xl ${isOpenNotify && " fill-main-2"}`}>
+                  className={` hover:bg-[#E6ECFF] rounded-xl ${isOpenNotify && " fill-main-2"}`}>
                   <IconNotifications />
                 </Button>
               </DialogTrigger>
@@ -128,7 +128,7 @@ function Navigation({ Button }: { Button: any }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className=" rounded-2xl hover:bg-[#E6ECFF]">
+                  className=" rounded-xl hover:bg-[#E6ECFF]">
                   <IconHelp />
                 </Button>
               </DialogTrigger>
@@ -149,7 +149,7 @@ function Navigation({ Button }: { Button: any }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className=" rounded-2xl hover:bg-[#E6ECFF]">
+                  className=" rounded-xl hover:bg-[#E6ECFF]">
                   <IconQuote />
                 </Button>
               </DialogTrigger>

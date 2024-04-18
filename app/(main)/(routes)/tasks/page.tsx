@@ -61,14 +61,16 @@ const InititalTasks: Task[] = [
   },
 ];
 
+new Date().getTime();
+
 const taskTmp: Task = {
-  id: 1000e1000,
+  id: 0,
   name: "",
   description: "",
   status: false,
   deadline: "",
   duration: "",
-  priority: "",
+  priority: "D",
 };
 const tasksPage: React.FC = () => {
   const [tasks, setTasks] = useState(InititalTasks);
@@ -100,6 +102,12 @@ const tasksPage: React.FC = () => {
 
   // Función para crear una tarea
   const AddTask = (taskNew: Task) => {
+    if (taskNew.name === "") {
+      alert("El nombre de la tarea no puede estar vacío");
+      return;
+      
+    }
+
     setTasks([...tasks, taskNew]);
     setIsAdding(false);
   };
@@ -144,12 +152,16 @@ const tasksPage: React.FC = () => {
 
   // Función Global
 
-  const UpdateAnyData = (id: number, type: string) => {
-   /*  setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, [type]: e?.target.value } : task
-      )
-    ) */
+  
+
+  const changeName = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    type: string
+  ) => {
+    setTaskTemp({ ...taskTemp, [type]: event.target.value.trim() });
+
+    setTasks({...tasks, })
+    console.log(taskTemp);
   };
 
   // Función para añadir DURACIÓN a una tarea
@@ -179,15 +191,15 @@ const tasksPage: React.FC = () => {
 
   return (
     <>
-      <div className="w-[100vw] h-16 flex items-center justify-around bg-main-superlight dark:bg-main-hiperdark fixed  ">
+      <div className="w-[100vw] h-16 flex items-center justify-around  bg-main-superlight dark:bg-main-hiperdark fixed  ">
         <div className="w-12"></div>
-        <TittleSection>Lista de tareas 1</TittleSection>
+        <TittleSection className=" ">Lista de tareas 1</TittleSection>
         <div className="flex gap-2 w-12 justify-around">
           <Ellipsis className="h-4 w-4" />
           <Settings2 className="h-4 w-4" />
         </div>
       </div>
-      <div className="flex flex-col  mb-40 mt-24  group/sec">
+      <div className="flex flex-col  mb-32 mt-24  group/sec">
         {tasks
           .filter((task) => !task.status)
           // .sort((a, b) => a.priority.localeCompare(b.priority))
@@ -219,7 +231,7 @@ const tasksPage: React.FC = () => {
 
         {tasks.some((task) => task.status) && (
           <div
-            className="text-sm group font-semibold cursor-pointer text-slate-500 hover:text-main-2 items-center  justify-start flex flex-row my-2 gap-2 mt-32"
+            className="text-sm group font-semibold cursor-pointer text-slate-500 hover:text-main-2 items-center  justify-start flex flex-row mt-24 mb-4 gap-2 "
             onClick={showCompleteds}>
             <div className="h-px w-full bg-main-extradark/30 group-hover:bg-main-2" />
             <ChevronRight

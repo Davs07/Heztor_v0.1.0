@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "./Wrapper";
 import { cn } from "@/lib/utils";
 import {
@@ -15,6 +15,7 @@ import {
 import IconCalendar from "../Icons/FeaturesIcons/IconCalendar.jsx";
 import IconFlag from "../Icons/FeaturesIcons/IconFlag";
 import IconStopWatch from "../Icons/FeaturesIcons/IconStopWatch";
+import SelectPriority from "./SelectPriority";
 
 interface Task {
   id: number;
@@ -39,26 +40,34 @@ type TaskProps = {
 function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
   const [newTask, setNewTask] = useState<Task>(task);
 
-  const saveTask = () => {
+  const changeDataText = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    type: string
+  ) => {
+    setNewTask({ ...newTask, [type]: event.target.value.trim() });
+  };
+
+  const changeDataInput = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    type: string
+  ) => {
+    setNewTask({ ...newTask, [type]: event.target.value.trim() });
+  };
+
+  const changePriority = (priority: string) => {
     setNewTask({
-      id: task.id,
-      name: newTask.name,
-      description: newTask.description,
-      deadline: newTask.deadline,
-      duration: newTask.duration,
-      priority: newTask.priority,
-      status: newTask.status,
+      ...newTask,
+      priority: priority,
     });
   };
 
-  const changeName = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewTask({ ...newTask, name: event.target.value.trim() });
-  };
+  useEffect(() => {
+    console.log(newTask);
+  }, [newTask]);
 
   return (
     <Wrapper
       className="flex-col bg-transparent  text-white border-main-2 border "
-      onClick={saveTask}
       {...props}>
       {/* Header */}
 
@@ -68,7 +77,7 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
         <textarea
           defaultValue={newTask.name}
           placeholder="Nombre de la tarea"
-          onChange={changeName}
+          onChange={(event) => changeDataText(event, "name")}
           className=" flex-1 text-sm font-normal bg-transparent text-slate-900 placeholder:text-slate-400 dark:text-white resize-none w-full focus:outline-none active:outline-none h-6 pt-[2px]"></textarea>
       </div>
 
@@ -77,47 +86,64 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
         <textarea
           className="text-xs bg-transparent text-slate-500 dark:text-white resize-none w-full focus:outline-none active:outline-none h-5 pt-[2px] "
           placeholder="Descripción"
-          onChange={(e) => {
-            setNewTask({ ...newTask, description: e.target.value.trim() });
-          }}
+          onChange={(event) => changeDataText(event, "description")}
           defaultValue={newTask.description}></textarea>
       </div>
 
       {/* Info */}
-      <div className="w-full flex flex-row justify-evenly">
-        <div className="text-xs flex flex-row gap-3 w-full items-end ">
-          <Button
-            variant="none"
-            size={"i"}
-            className="border border-main-2  text-main-2">
-            <IconStopWatch height="14" />
-            {newTask.duration}
+      <div className="w-full flex flex-col gap-2 sm:flex-row justify-evenly">
+        <div className="text-xs flex flex-wrap gap-3 w-full items-end ">
+          <Button variant="none" size={"i"} className=" text-xs w-max px-1">
+            <label htmlFor="duration">
+              <IconStopWatch height="14" />
+            </label>
+            {/* <p>{newTask.duration}</p> */}
+            <input
+              type="time"
+              name=""
+              step={1}
+              id="duration"
+              className="bg-transparent"
+              onChange={(event) => changeDataInput(event, "duration")}
+            />
+          </Button>
+          <Button variant="none" size={"i"} className=" text-xs w-max px-1 ">
+            <label htmlFor="deadline">
+              {/* <p>{newTask.deadline}</p> */}
+              <IconCalendar height="14" />
+            </label>
+            <input
+              type="date"
+              placeholder="Fecha límite"
+              name="fecha"
+              id="deadline"
+              className="bg-transparent bg-none"
+              onChange={(event) => changeDataInput(event, "deadline")}
+            />
           </Button>
 
-          <Button variant="none" size={"i"} className=" text-xs ">
-            <IconCalendar height="14" />
-            <p>{newTask.deadline}</p>
-          </Button>
-
-          <Button variant="none" size={"i"} className="">
+          {/* <Button variant="none" size={"i"} className="">
             <IconFlag height="14" />
             <p>{newTask.priority}</p>
-          </Button>
+          </Button> */}
+
+          <SelectPriority changePriority={changePriority} />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-end items-end">
           <Button
             onClick={props.closeAdding}
             variant="none"
             size={"i"}
-            className="border border-main-2 text-main-2">
-            <X height="16" />
+            className="border border-main-2 text-main-2 w-max px-2 text-sm">
+            Cancelar
           </Button>
           <Button
             onClick={() => AddTask(newTask)}
             variant="none"
             size={"i"}
-            className="bg-main-2 hover:bg-main-2 text-main-superlight w-16 text-sm">
-            <SendHorizontal height="16" />
+            className="bg-main-2 hover:bg-main-2 text-main-superlight w-max px-2 text-sm">
+            {/* <SendHorizontal height="16" /> */}
+            Agregar
           </Button>
         </div>
       </div>

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       {
         media: "(prefers-color-scheme: dark)",
         url: "/HeztorLogo1.svg",
-        href: "/heztorsquare1.svg",
+        href: "/Heztor.svg",
         // href: "/heztorsquare1.svg",
         // sizes: "32x32",
         // type: "image/png"
