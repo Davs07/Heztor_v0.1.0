@@ -32,13 +32,14 @@ type AddTaskFunction = (taskNew: Task) => void;
 type TaskProps = {
   // onClick?: React.MouseEventHandler;
   task: Task;
-  onClick?: () => void;
+  // onClick?: () => void;
   AddTask: AddTaskFunction;
   closeAdding: () => void;
 };
 
-function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
+function TaskCreateWrapper({ task, AddTask, ...props }: TaskProps) {
   const [newTask, setNewTask] = useState<Task>(task);
+
 
   const changeDataText = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -65,19 +66,41 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
     console.log(newTask);
   }, [newTask]);
 
+  const autoResizing = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    type: string
+  ) => {
+    let textAreaHeight: string;
+    switch (type) {
+      case "name":
+        textAreaHeight = "24px";
+        break;
+      case "description":
+        textAreaHeight = "20px";
+        break;
+      default:
+        textAreaHeight = "20px";
+        break;
+    }
+
+    event.target.style.height = textAreaHeight;
+    event.target.style.height = `${event.target.scrollHeight}px`;
+  };
+
   return (
     <Wrapper
       className="flex-col bg-transparent  text-white border-main-2 border "
       {...props}>
       {/* Header */}
-
       <div className="flex items-center">
         {/* Name */}
-
         <textarea
           defaultValue={newTask.name}
           placeholder="Nombre de la tarea"
-          onChange={(event) => changeDataText(event, "name")}
+          onChange={(event) => {
+            changeDataText(event, "name");
+            autoResizing(event, "name");
+          }}
           className=" flex-1 text-sm font-normal bg-transparent text-slate-900 placeholder:text-slate-400 dark:text-white resize-none w-full focus:outline-none active:outline-none h-6 pt-[2px]"></textarea>
       </div>
 
@@ -86,7 +109,10 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
         <textarea
           className="text-xs bg-transparent text-slate-500 dark:text-white resize-none w-full focus:outline-none active:outline-none h-5 pt-[2px] "
           placeholder="Descripción"
-          onChange={(event) => changeDataText(event, "description")}
+          onChange={(event) => {
+            changeDataText(event, "description");
+            autoResizing(event, "description");
+          }}
           defaultValue={newTask.description}></textarea>
       </div>
 
@@ -142,7 +168,6 @@ function TaskCreateWrapper({ task, onClick, AddTask, ...props }: TaskProps) {
             variant="none"
             size={"i"}
             className="bg-main-2 hover:bg-main-2 text-main-superlight w-max px-2 text-sm">
-            {/* <SendHorizontal height="16" /> */}
             Agregar
           </Button>
         </div>

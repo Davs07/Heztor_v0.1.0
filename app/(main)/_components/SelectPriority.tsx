@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Flag } from "lucide-react";
+import { Flag, FlagIcon } from "lucide-react";
 import IconFlag from "../Icons/FeaturesIcons/IconFlag";
 import { useEffect, useState } from "react";
 

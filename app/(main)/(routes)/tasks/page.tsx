@@ -61,10 +61,14 @@ const InititalTasks: Task[] = [
   },
 ];
 
-new Date().getTime();
+function generateUniqueId() {
+  const timestamp = new Date().getTime();
+  const randomNumber = Math.floor(Math.random() * 10000); // Número aleatorio entre 0 y 9999
+  return timestamp + randomNumber;
+}
 
 const taskTmp: Task = {
-  id: 0,
+  id: generateUniqueId(),
   name: "",
   description: "",
   status: false,
@@ -105,10 +109,9 @@ const tasksPage: React.FC = () => {
     if (taskNew.name === "") {
       alert("El nombre de la tarea no puede estar vacío");
       return;
-      
     }
 
-    setTasks([...tasks, taskNew]);
+    setTasks([...tasks, { ...taskNew, id: generateUniqueId() }]);
     setIsAdding(false);
   };
 
@@ -146,47 +149,6 @@ const tasksPage: React.FC = () => {
 
   const showCompleteds = () => {
     setIsShowingCompleteds((prev) => !prev);
-  };
-
-  // ADD DATA
-
-  // Función Global
-
-  
-
-  const changeName = (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-    type: string
-  ) => {
-    setTaskTemp({ ...taskTemp, [type]: event.target.value.trim() });
-
-    setTasks({...tasks, })
-    console.log(taskTemp);
-  };
-
-  // Función para añadir DURACIÓN a una tarea
-
-  const AddDuration = (id: number) => {
-    const idd = tasks.filter((task) => task.id === id);
-    console.log(idd);
-
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, duration: idd[0].duration } : task
-      )
-    );
-  };
-
-  // Función para anadir PRIORIDAD a una tarea
-  const AddPriority = (id: number) => {
-    const idd = tasks.filter((task) => task.id === id);
-    console.log(idd);
-  };
-
-  // Función para anadir FECHA LÍMITE a una tarea
-  const AddDeadline = (id: number) => {
-    const idd = tasks.filter((task) => task.id === id);
-    console.log(idd);
   };
 
   return (

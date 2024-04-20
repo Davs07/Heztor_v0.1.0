@@ -1,5 +1,8 @@
-import { AlignLeft } from "lucide-react";
+import { AlignLeft, Plus, PlusIcon } from "lucide-react";
 import * as React from "react";
+import IconCalendarDay from "../Icons/Calendar/IconCalendarDay";
+import IconCalendarWeek from "../Icons/Calendar/IconCalendarWeek";
+import IconCalendarMonth from "../Icons/Calendar/IconCalendarMonth";
 
 interface taskLists {
   name: string;
@@ -46,20 +49,23 @@ const taskList: Array<taskLists> = [
 
 const SidebarOptions: React.FC = () => {
   return (
-    <div className="w-full p-3 pt-8 flex flex-col gap-3 text-sm">
-      <ul className="flex flex-col gap-1">
-        <li>
+    <div className="w-full p-3 pt-8 flex flex-col gap-4 text-sm">
+      <ul className="flex flex-col gap-2">
+        <li className="flex  items-center ">
+          <IconCalendarDay height={12} width={24} />
           <p>Día</p>
         </li>
-        <li>
+        <li className="flex items-center">
+          <IconCalendarWeek height={12} width={24} />
           <p>Semana</p>
         </li>
-        <li>
+        <li className="flex  items-center  ">
+          <IconCalendarMonth height={12} width={24} />
           <p>Mes</p>
         </li>
       </ul>
 
-      <ul className="flex flex-col gap-1">
+      <ul className="flex flex-col gap-2">
         <p className="font-semibold text-slate-500">Favoritos</p>
         {taskList
           .filter((task) => task.favorite)
@@ -71,8 +77,11 @@ const SidebarOptions: React.FC = () => {
           ))}
       </ul>
 
-      <ul className="flex flex-col gap-1">
-        <p className="font-semibold text-slate-500">Mis proyectos</p>
+      <ul className="flex flex-col gap-2">
+        <div className="flex items-center justify-between font-semibold text-slate-500">
+          <p className="">Mis proyectos</p>
+          <PlusIcon height={16} width={24} />
+        </div>
         {taskList.map((task) => (
           <li key={task.id} className="flex items-center ">
             <AlignLeft height={12} />
