@@ -18,11 +18,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import IconSearch from "../Icons/NavigationOptions/IconSearch.jsx";
 import { Button } from "@/components/ui/button";
 import UserItem from "./UserItem";
+import { Menu } from "lucide-react";
+
+
+
 
 function Navigation() {
   const navigationSec = navigation;
@@ -169,7 +173,6 @@ function Navigation() {
               </DialogContent>
             </Dialog>
 
-            
             <UserItem />
           </ul>
         </div>

@@ -6,10 +6,17 @@ import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import SidebarOptions from "./SidebarOptions";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api.js";
+
 
 export default function Sidebar() {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 760px)");
+
+  const documents = useQuery(api.documents.get);
+
+
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
@@ -110,7 +117,14 @@ export default function Sidebar() {
         </div>
 
         <SidebarOptions />
-
+        <div>
+        {
+          documents?.map((document) => (
+            <div key={document._id}>{document.title}</div>
+          ))
+        }
+        </div>
+          
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}

@@ -42,7 +42,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
             storageKey="heztor-theme-2">
-              <Toaster position="bottom-center"/>
+            <Toaster position="bottom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

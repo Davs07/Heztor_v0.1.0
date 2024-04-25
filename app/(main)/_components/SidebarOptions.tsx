@@ -3,11 +3,15 @@ import * as React from "react";
 import IconCalendarDay from "../Icons/Calendar/IconCalendarDay";
 import IconCalendarWeek from "../Icons/Calendar/IconCalendarWeek";
 import IconCalendarMonth from "../Icons/Calendar/IconCalendarMonth";
+import { usePathname } from "next/navigation";
+import {
+  NotesSidebarMenu,
+  TasksListsSidebarMenu,
+} from "../services/sideBarMenu";
 
 interface taskLists {
   name: string;
   id: number;
-  description?: string;
   favorite: boolean;
 }
 
@@ -15,39 +19,48 @@ const taskList: Array<taskLists> = [
   {
     name: "StartUp",
     id: 1,
-    description:
-      "Una lista de las tareas y pasos que me ayudarán a fundar mi primera startup",
+
     favorite: true,
   },
   {
     name: "English dsadasd asd asdsa dasd asd as",
     id: 2,
-    description: "Una lista de los temas que me ayudarán a mejorar mi inglés",
     favorite: false,
   },
   {
     name: "Books",
     id: 3,
-    description:
-      "Una lista de los libros que me ayudarán a aprender algo nuevo",
+
     favorite: false,
   },
   {
     name: "Coding",
     id: 4,
-    description: "Un proyecto para mejorar mis habilidades de programación",
     favorite: true,
   },
   {
     name: "Work",
     id: 5,
-    description:
-      "Una lista de las tareas y pasos que me ayudarán a mejorar mi trabajo",
     favorite: false,
   },
 ];
 
 const SidebarOptions: React.FC = () => {
+  const sidebarTasks = TasksListsSidebarMenu;
+  const sidebarNotes = NotesSidebarMenu;
+
+  const [sideBarMenu, setSideBarMenu] = React.useState(sidebarTasks);
+
+  const pathname = usePathname();
+
+  React.useEffect(() => {
+    if (pathname === "/tarea") {
+      setSideBarMenu(sidebarTasks);
+    } else if (pathname === "/notes") {
+      setSideBarMenu(sidebarNotes);
+    }
+  }, [pathname]);
+
   return (
     <div className="w-full p-3 pt-8 flex flex-col gap-4 text-sm">
       <ul className="flex flex-col gap-2">
@@ -63,6 +76,14 @@ const SidebarOptions: React.FC = () => {
           <IconCalendarMonth height={12} width={24} />
           <p>Mes</p>
         </li>
+        {pathname}
+
+        {sideBarMenu[0]?.items.map((opt) => (
+          <li className="flex items-center">
+            {opt.icon}
+            <p>{opt.name}</p>
+          </li>
+        ))}
       </ul>
 
       <ul className="flex flex-col gap-2">
@@ -71,7 +92,7 @@ const SidebarOptions: React.FC = () => {
           .filter((task) => task.favorite)
           .map((task) => (
             <li key={task.id} className="flex items-center h-5 ">
-              <AlignLeft height={12} className="min-w-6"/>
+              <AlignLeft height={12} className="min-w-6" />
               <p className="line-clamp-1">{task.name}</p>
             </li>
           ))}
@@ -83,9 +104,7 @@ const SidebarOptions: React.FC = () => {
           <PlusIcon height={16} width={24} />
         </div>
         {taskList.map((task) => (
-          <li
-            key={task.id}
-            className=" flex flex-row items-center w-full   ">
+          <li key={task.id} className=" flex flex-row items-center w-full   ">
             <AlignLeft height={12} className="min-w-6" />
             <p className="line-clamp-1 ">{task.name}</p>
           </li>
