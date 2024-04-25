@@ -41,10 +41,9 @@ type TaskProps = {
   // onClick?: React.MouseEventHandler;
   task: Task;
   // props: any;
-  onClick?: () => void;
   CompleteTask: (id: number) => void;
   DeleteTask: (id: number) => void;
-  EditTask: (id: number) => void;
+  EditTask: (id: number, taskEdited: Task) => void;
 };
 
 function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
@@ -137,9 +136,10 @@ function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
               <DialogTitle className="text-base">Lista de tareas 1</DialogTitle>
               <TaskModal
                 task={task}
-                EditTask={EditTask}
-                DeleteTask={DeleteTask}
-                CompleteTask={CompleteTask}
+                editTask={EditTask}
+                deleteTask={DeleteTask}
+                completeTask={CompleteTask}
+                color={color}
               />
             </DialogHeader>
           </DialogContent>
@@ -148,13 +148,15 @@ function TaskWrapper({ task, CompleteTask, DeleteTask, EditTask }: TaskProps) {
 
       {/* Descripción */}
       <div className="">
-        <p className="text-xs  dark:text-main-extralight  ">{task.description}</p>
+        <p className="text-xs  dark:text-main-extralight  ">
+          {task.description}
+        </p>
       </div>
 
       {/* Info */}
       <div className="text-xs flex flex-row  ">
         {task.duration && (
-          <Badge variant="ghost" >
+          <Badge variant="ghost">
             <IconStopWatch height="12" />
             <p>{task.duration}</p>
           </Badge>

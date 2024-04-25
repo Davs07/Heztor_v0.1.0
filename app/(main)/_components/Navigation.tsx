@@ -21,8 +21,10 @@ import {
 import { useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import IconSearch from "../Icons/NavigationOptions/IconSearch.jsx";
+import { Button } from "@/components/ui/button";
+import UserItem from "./UserItem";
 
-function Navigation({ Button }: { Button: any }) {
+function Navigation() {
   const navigationSec = navigation;
   const pathname = usePathname();
 
@@ -46,7 +48,7 @@ function Navigation({ Button }: { Button: any }) {
     <>
       <div
         className={cn(
-          "group/navigation relative  w-screen bg-white dark:bg-main-superdark  overflow-hidden  flex h-12 flex-row z-[9999999] px-[8vw]  ",
+          "group/navigation relative  w-screen bg-white dark:bg-main-superdark border-b border-slate-200 dark:border-slate-50  overflow-hidden  flex h-12 flex-row z-[9999999] px-[8vw]  ",
           isMobile && "hidden "
         )}>
         <div
@@ -167,10 +169,8 @@ function Navigation({ Button }: { Button: any }) {
               </DialogContent>
             </Dialog>
 
-            {/* User Options */}
-            <Button variant="ghost" size="icon" className=" hover:bg-[#E6ECFF]">
-              <UserButton />
-            </Button>
+            
+            <UserItem />
           </ul>
         </div>
       </div>

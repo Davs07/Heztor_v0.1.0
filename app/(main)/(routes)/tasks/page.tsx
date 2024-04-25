@@ -10,6 +10,7 @@ import TaskCreateWrapper from "../../_components/TaskCreateWrapper";
 import { cn } from "@/lib/utils";
 // Icons
 import { ChevronRight, Ellipsis, Plus, Settings2 } from "lucide-react";
+import Image from "next/image";
 
 // Interface
 interface Task {
@@ -116,9 +117,14 @@ const tasksPage: React.FC = () => {
   };
 
   // Función para editar una tarea
-  const EditTask = (id: number) => {
-    const idd = tasks.filter((task) => task.id === id);
-    console.log(idd);
+  const EditTask = (id: number, taskEdited: Task) => {
+    setTaskTemp({ ...taskEdited });
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...tasks, ...taskEdited } : { ...task }
+      )
+    );
+    setTaskTemp(taskTemp);
   };
 
   // Función para borrar una tarea
@@ -162,6 +168,16 @@ const tasksPage: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col  mb-32 mt-24  group/sec">
+        {tasks.every((task) => task.status) && (
+          <Image
+            src={"/heztorTask.png"}
+            alt="Tareas completadas"
+            width={300}
+            height={300}
+            className=" self-center mb-8 min-w-[280px] w-[300px]"
+          />
+        )}
+
         {tasks
           .filter((task) => !task.status)
           // .sort((a, b) => a.priority.localeCompare(b.priority))

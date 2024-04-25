@@ -20,7 +20,7 @@ const taskList: Array<taskLists> = [
     favorite: true,
   },
   {
-    name: "English",
+    name: "English dsadasd asd asdsa dasd asd as",
     id: 2,
     description: "Una lista de los temas que me ayudarán a mejorar mi inglés",
     favorite: false,
@@ -70,22 +70,24 @@ const SidebarOptions: React.FC = () => {
         {taskList
           .filter((task) => task.favorite)
           .map((task) => (
-            <li key={task.id} className="flex items-center ">
-              <AlignLeft height={12} />
-              <p>{task.name}</p>
+            <li key={task.id} className="flex items-center h-5 ">
+              <AlignLeft height={12} className="min-w-6"/>
+              <p className="line-clamp-1">{task.name}</p>
             </li>
           ))}
       </ul>
 
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col   gap-2">
         <div className="flex items-center justify-between font-semibold text-slate-500">
           <p className="">Mis proyectos</p>
           <PlusIcon height={16} width={24} />
         </div>
         {taskList.map((task) => (
-          <li key={task.id} className="flex items-center ">
-            <AlignLeft height={12} />
-            <p>{task.name}</p>
+          <li
+            key={task.id}
+            className=" flex flex-row items-center w-full   ">
+            <AlignLeft height={12} className="min-w-6" />
+            <p className="line-clamp-1 ">{task.name}</p>
           </li>
         ))}
       </ul>

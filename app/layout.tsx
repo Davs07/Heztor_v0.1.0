@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
+import { Toaster } from "sonner";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,16 +17,11 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: light)",
         url: "/HeztorLogo2.svg",
         href: "/heztorI21.svg",
-        // sizes: "32x32",
-        // type: "image/png"
       },
       {
         media: "(prefers-color-scheme: dark)",
         url: "/HeztorLogo1.svg",
         href: "/Heztor.svg",
-        // href: "/heztorsquare1.svg",
-        // sizes: "32x32",
-        // type: "image/png"
       },
     ],
   },
@@ -37,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={` ${inter.className} overflow-x-hidden`} >
+      <body className={` ${inter.className} overflow-x-hidden`}>
         <ConvexClientProvider>
           <ThemeProvider
             attribute="class"
@@ -45,6 +42,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
             storageKey="heztor-theme-2">
+              <Toaster position="bottom-center"/>
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
