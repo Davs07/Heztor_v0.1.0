@@ -45,6 +45,17 @@ const taskList: Array<taskLists> = [
   },
 ];
 
+interface sidebarMenuss {
+  type: string;
+  items: Array<items>;
+}
+
+type items = {
+  name: string;
+  icon: JSX.Element;
+  id: number;
+};
+
 const SidebarOptions: React.FC = () => {
   const sidebarTasks = TasksListsSidebarMenu;
   const sidebarNotes = NotesSidebarMenu;
@@ -78,7 +89,7 @@ const SidebarOptions: React.FC = () => {
         </li>
         {pathname}
 
-        {sideBarMenu[0]?.items.map((opt) => (
+        {sideBarMenu.items.map((opt) => (
           <li className="flex items-center">
             {opt.icon}
             <p>{opt.name}</p>
