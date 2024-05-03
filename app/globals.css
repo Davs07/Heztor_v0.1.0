@@ -19,8 +19,6 @@ body,
   -webkit-text-stroke: 0.8px #050a30;
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;

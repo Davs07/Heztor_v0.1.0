@@ -23,10 +23,8 @@ import { useMediaQuery } from "usehooks-ts";
 import IconSearch from "../Icons/NavigationOptions/IconSearch.jsx";
 import { Button } from "@/components/ui/button";
 import UserItem from "./UserItem";
-import { Menu } from "lucide-react";
-
-
-
+import { Separator } from "@/components/ui/separator";
+import DateLocal from "./DateLocal";
 
 function Navigation() {
   const navigationSec = navigation;
@@ -52,61 +50,36 @@ function Navigation() {
     <>
       <div
         className={cn(
-          "group/navigation relative  w-screen bg-white dark:bg-main-superdark border-b border-slate-200 dark:border-slate-50  overflow-hidden  flex h-12 flex-row z-[9999999] px-[8vw]  ",
+          "group/navigation relative  w-full bg-white dark:bg-main-superdark border-b border-slate-200 dark:border-slate-50  overflow-hidden  flex h-14 flex-row z-[9999999] px-6  ",
           isMobile && "hidden "
         )}>
         <div
           className={cn(
-            "w-full h-full flex justify-between items-center",
-            isMobile && "flex-col-reverse justify-center items-center "
+            "w-full h-full flex justify-between items-center text-sm"
           )}>
+          <label className="relative ">
+            <span className="sr-only">Buscar</span>
+            <span className="absolute inset-y-0 left-0 flex items-center pl-2 ">
+              <IconSearch />
+            </span>
+            <input
+              placeholder="Buscar"
+              type="text"
+              className={cn(
+                "border  border-gray-200 pl-7 w-96 h-8 outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
+                isM && "w-4"
+              )}
+            />
+          </label>
           <ul
             className={cn(
-              "flex flex-row justify-center items-center gap-4 text-slate-700 dark:text-white",
-              isMobile && "  flex-col"
-            )}>
-            {navigationSec.map((Menu, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                size="sm"
-                className={`group hover:bg-[#E6ECFF] rounded-xl ${
-                  pathname === Menu.src
-                    ? "  text-white hover:text-white bg-main-2 hover:bg-main-2 "
-                    : ""
-                }   text-sm `}>
-                <Link
-                  href={Menu.src}
-                  passHref={true}
-                  className={`flex justify-center items-center `}>
-                  <span className={`text-lg  `}>{Menu.icon}</span>
-                  <span className={cn("px-2 py-1", isMin && "hidden")}>
-                    {Menu.title}
-                  </span>
-                </Link>
-              </Button>
-            ))}
-          </ul>
-
-          <ul
-            className={cn(
-              "flex items-center justify-center gap-2 text-slate-700 dark:text-white ",
+              "flex items-center justify-center  text-slate-700 dark:text-white gap-4 ",
               isMobile && "flex-wrap-reverse bg-main-superlight pb-4"
             )}>
-            <label className="relative ">
-              <span className="sr-only">Buscar</span>
-              <span className="absolute inset-y-0 left-0 flex items-center pl-2 ">
-                <IconSearch />
-              </span>
-              <input
-                placeholder="Buscar"
-                type="text"
-                className={cn(
-                  "border-2 border-transparent bg-[#E6ECFF] pl-7 w-60 h-8  outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
-                  isM && "w-4"
-                )}
-              />
-            </label>
+            <Separator orientation="vertical" className="h-5 sm:block hidden" />
+
+            <DateLocal className=" sm:block hidden" />
+            <Separator orientation="vertical" className="h-5" />
             {/* Notifications */}
             <Dialog>
               <DialogTrigger>
@@ -123,51 +96,6 @@ function Navigation() {
                   <DialogDescription>
                     This action cannot be undone. This will permanently delete
                     your account and remove your data from our servers.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-
-            {/* Help Options*/}
-            <Dialog>
-              <DialogTrigger>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className=" rounded-xl hover:bg-[#E6ECFF]">
-                  <IconHelp />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="h-max">
-                <DialogHeader>
-                  <DialogTitle>Are you absolutely sure?</DialogTitle>
-                  <DialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-
-            {/* Daily Quote */}
-            <Dialog>
-              <DialogTrigger>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className=" rounded-xl hover:bg-[#E6ECFF]">
-                  <IconQuote />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="h-max">
-                <DialogHeader>
-                  <DialogTitle>Cita Diaria</DialogTitle>
-                  <DialogDescription className="text-slate-700 text-xl">
-                    La única forma de hacer un gran trabajo es amar lo que
-                    haces.
-                  </DialogDescription>
-                  <DialogDescription className="text-slate-700 text-base text-right">
-                    -Steve Jobs
                   </DialogDescription>
                 </DialogHeader>
               </DialogContent>

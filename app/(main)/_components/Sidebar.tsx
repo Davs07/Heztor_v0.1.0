@@ -9,13 +9,11 @@ import SidebarOptions from "./SidebarOptions";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api.js";
 
-
 export default function Sidebar() {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 760px)");
 
   const documents = useQuery(api.documents.get);
-
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -102,7 +100,7 @@ export default function Sidebar() {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full bg-white dark:bg-main-superdark overflow-y-auto relative flex w-[210px] flex-col z-[999999]  ",
+          "group/sidebar h-full bg-white dark:bg-main-superdark overflow-y-auto relative flex w-[210px] flex-col z-[999999] border-r border-slate-200  ",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0 "
         )}>
@@ -118,13 +116,11 @@ export default function Sidebar() {
 
         <SidebarOptions />
         <div>
-        {
-          documents?.map((document) => (
+          {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
-          ))
-        }
+          ))}
         </div>
-          
+
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}
