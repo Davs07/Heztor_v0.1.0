@@ -36,6 +36,23 @@ function Navigation() {
 
   const [isOpenNotify, setIsOpenNotify] = useState(true);
 
+  const currentTime = new Date();
+  function saludarSegunHora() {
+    const currentHour = currentTime.getHours();
+
+    let saludo;
+
+    if (currentHour >= 5 && currentHour < 12) {
+      saludo = "Buenos días";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      saludo = "Buenas tardes";
+    } else {
+      saludo = "Buenas noches";
+    }
+
+    return saludo + ", Davy";
+  }
+
   /* #ECF1FF */
 
   /* bg-navigation */
@@ -63,10 +80,10 @@ function Navigation() {
               <IconSearch />
             </span>
             <input
-              placeholder="Buscar"
+              placeholder="Buscar alguna tarea, evento, hábito, nota..."
               type="text"
               className={cn(
-                "border  border-gray-200 pl-7 w-96 h-8 outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
+                "border  border-gray-200 pl-7 w-[50vw] h-8 outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
                 isM && "w-4"
               )}
             />
@@ -76,8 +93,8 @@ function Navigation() {
               "flex items-center justify-center  text-slate-700 dark:text-white gap-4 ",
               isMobile && "flex-wrap-reverse bg-main-superlight pb-4"
             )}>
+            <p>{saludarSegunHora()}</p>
             <Separator orientation="vertical" className="h-5 sm:block hidden" />
-
             <DateLocal className=" sm:block hidden" />
             <Separator orientation="vertical" className="h-5" />
             {/* Notifications */}

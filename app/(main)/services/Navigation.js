@@ -5,6 +5,8 @@ import IconFinance from "../Icons/NavigationLinks/IconFinance";
 import IconStats from "../Icons/NavigationLinks/IconStats";
 import IconNote from "../Icons/NavigationLinks/IconNote";
 import { Goal } from "lucide-react";
+import { IconControl } from "../Icons/NavigationLinks/IconControl";
+import { IconGestion } from "../Icons/NavigationLinks/IconGestion";
 
 const navigation = [
   {
@@ -13,33 +15,28 @@ const navigation = [
     icon: <IconDashboard />,
   },
   {
-    title: "Metas",
-    src: "/goals",
-    icon: <Goal className="h-[1.2rem] w-[1.2rem] " />,
-  },
-  {
-    title: "Tareas",
-    src: "/tasks",
-    icon: <IconTask />,
-  },
-  {
-    title: "Hábitos",
+    title: "Control",
     src: "/habits",
-    icon: <IconHabit />,
+    icon: <IconControl />,
   },
   {
-    title: "Notas",
+    title: "Gestión",
+    src: "/tasks",
+    icon: <IconGestion />,
+  },
+  {
+    title: "Noción",
     src: "/notes",
     icon: <IconNote />,
   },
-  {
-    title: "Finanzas",
-    src: "/finance",
-    icon: <IconFinance />,
-  },
+  // {
+  //   title: "Finanzas",
+  //   src: "/finance",
+  //   icon: <IconFinance />,
+  // },
   {
     title: "Estadísticas",
-    src: "/stats",
+    src: "/finance",
     icon: <IconStats />,
   },
 ];
