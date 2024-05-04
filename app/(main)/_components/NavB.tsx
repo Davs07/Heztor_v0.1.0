@@ -1,6 +1,6 @@
 "use client";
 
-import { navigation } from "../services/Navigation.js";
+import { navigation } from "../services/NavigationLinks.js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

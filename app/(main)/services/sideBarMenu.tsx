@@ -7,38 +7,141 @@ import IconCalendarWeek from "../Icons/Calendar/IconCalendarWeek";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import IconNote from "../Icons/NavigationLinks/IconNote";
+import { Book, Folder, Plus, Star } from "lucide-react";
 
-const TasksListsSideBar = {
-  type: "post",
-  items: [
-    {
-      id: 1,
-      name: "Día",
-      icon: <IconCalendarDay height={12} width={24}/>,
-    },
-    {
-      id: 2,
-      name: "Semana",
-      icon: <IconCalendarWeek height={12} width={24}/>,
-    },
-    {
-      id: 3,
-      name: "Mes",
-      icon: <IconCalendarMonth height={12} width={24}/>,
-    },
-  ],
-};
+interface SidebarMenu {
+  label: string;
+  icon: JSX.Element;
+  type: "button" | "filter" | "functionality";
+  items?: SidebarMenu[];
+}
 
-const NotesSidebar = {
-  type: "post",
-  items: [
-    {
-      id: 1,
-      name: "Todos",
-      icon: <IconCalendarMonth height={12} width={24}/>, //height={12} width={24}
-    },
-  ],
-};
+export const controlNav: SidebarMenu[] = [
+  {
+    label: "Añadir Hábito",
+    icon: <Plus height={12} width={24} color={"blue"} />,
+    type: "button",
+  },
+  {
+    label: "Añadir Registro",
+    icon: <Plus height={12} width={24} color={"blue"} />,
+    type: "button",
+  },
+  {
+    label: "Día",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Próximo",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Finanzas",
+    icon: <IconCalendarMonth height={12} width={24} />,
+    type: "functionality",
+  },
+  {
+    label: "Hábitos",
+    icon: <IconNote height={12} width={24} />,
+    type: "functionality",
+    items: [
+      {
+        label: "Categorías",
+        icon: <IconNote height={12} width={24} />,
+        type: "functionality",
+      },
+      {
+        label: "Mis Hábitos",
+        icon: <IconNote height={12} width={24} />,
+        type: "functionality",
+      },
+    ],
+  },
+];
 
-export const TasksListsSidebarMenu = TasksListsSideBar;
-export const NotesSidebarMenu = NotesSidebar;
+export const managmentNav: SidebarMenu[] = [
+  {
+    label: "Añadir Tarea",
+    icon: <Plus height={12} width={24} color={"blue"} />,
+    type: "button",
+  },
+  {
+    label: "Añadir Evento",
+    icon: <Plus height={12} width={24} color={"blue"} />,
+    type: "button",
+  },
+  {
+    label: "Día",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Próximo",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Proyectos",
+    icon: <Folder height={12} width={24} />,
+    type: "functionality",
+    items: [
+      {
+        label: "Favoritos",
+        icon: <Star height={12} width={24} />,
+        type: "functionality",
+      },
+      {
+        label: "Proyectos",
+        icon: <Folder height={12} width={24} />,
+        type: "functionality",
+      },
+    ],
+  },
+];
+
+export const notionNav: SidebarMenu[] = [
+  {
+    label: "Añadir Entrada",
+    icon: <Plus height={12} width={24} />,
+    type: "button",
+  },
+  {
+    label: "Añadir Nota",
+    icon: <Plus height={12} width={24} />,
+    type: "button",
+  },
+  {
+    label: "Día",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Próximo",
+    icon: <IconCalendarWeek height={12} width={24} />,
+    type: "filter",
+  },
+  {
+    label: "Diario Personal",
+    icon: <Book height={12} width={24} />,
+    type: "functionality",
+  },
+  {
+    label: "Notas",
+    icon: <IconNote height={12} width={24} />,
+    type: "functionality",
+    items: [
+      {
+        label: "Favoritos",
+        icon: <Star height={12} width={24} />,
+        type: "functionality",
+      },
+      {
+        label: "Notas",
+        icon: <IconNote height={12} width={24} />,
+        type: "functionality",
+      },
+    ],
+  },
+];

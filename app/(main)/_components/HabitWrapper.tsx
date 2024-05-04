@@ -118,7 +118,7 @@ const categoryProperties: ExtendedHabitCategory = {
   },
   [HabitCategory.P]: {
     icon: <CodeXml className="w-8 h-8     " />,
-    
+
     color: "#00ffff",
   },
 };
@@ -171,7 +171,8 @@ function HabitWrapper({ habit }: { habit: Habit }) {
   // console.log(categoryProperties[habit.category].icon,)
 
   return (
-    <Wrapper /* color={colour} */ className="flex flex-row  justify-between items-center">
+    <Wrapper
+      /* color={colour} */ className="flex flex-row  justify-between items-center">
       {/* info */}
       <div className=" w-[240px]">
         <div className="flex items-center justify-start gap-1">
@@ -179,14 +180,14 @@ function HabitWrapper({ habit }: { habit: Habit }) {
             variant={"ghost"}
             size={"i"}
             className={` bg-[${categoryProperties[habit.category].color}]`}> */}
-          <div className="bg-[#E9EAF2] rounded-lg flex items-center h-max p-1">
+          {/* <div className="bg-[#E9EAF2] rounded-lg flex items-center h-max p-1">
             {categoryProperties[habit.category].icon}
-          </div>
+          </div> */}
 
           <div>
             {/* <p className="text-[10px]">{habit.category}</p> */}
-            <h5 >{habit.name}</h5>
-            <div className="flex items-center justify-start gap-1">
+            <h5>{habit.name}</h5>
+            <div className="flex flex-col items-start justify-start gap-1">
               <div className="text-xs flex gap-1 text-slate-400  ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

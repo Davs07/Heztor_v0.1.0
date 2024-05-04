@@ -1,4 +1,4 @@
-import { navigation } from "../services/Navigation.js";
+import { navigation } from "../services/NavigationLinks.js";
 import { usePathname } from "next/navigation.js";
 import Link from "next/link";
 import { cn } from "@/lib/utils.js";

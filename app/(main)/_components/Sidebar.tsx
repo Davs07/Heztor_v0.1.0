@@ -115,11 +115,11 @@ export default function Sidebar() {
         </div>
 
         <SidebarOptions />
-        <div>
+        {/* <div>
           {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
           ))}
-        </div>
+        </div> */}
 
         <div
           onMouseDown={handleMouseDown}

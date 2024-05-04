@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/clerk-react";
-import { navigation } from "../services/Navigation.js";
+import { navigation } from "../services/NavigationLinks.js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IconHelp from "../Icons/NavigationOptions/IconHelp.jsx";
@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import UserItem from "./UserItem";
 import { Separator } from "@/components/ui/separator";
 import DateLocal from "./DateLocal";
+import { HelpCircle } from "lucide-react";
 
 function Navigation() {
   const navigationSec = navigation;
@@ -93,11 +94,12 @@ function Navigation() {
               "flex items-center justify-center  text-slate-700 dark:text-white gap-4 ",
               isMobile && "flex-wrap-reverse bg-main-superlight pb-4"
             )}>
-            <p>{saludarSegunHora()}</p>
-            <Separator orientation="vertical" className="h-5 sm:block hidden" />
+            {/* <p>{saludarSegunHora()}</p> */}
+            <Separator orientation="vertical" className="h-5 sm:hidden block" />
             <DateLocal className=" sm:block hidden" />
             <Separator orientation="vertical" className="h-5" />
             {/* Notifications */}
+            <HelpCircle/>
             <Dialog>
               <DialogTrigger>
                 <Button

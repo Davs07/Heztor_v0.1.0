@@ -16,27 +16,23 @@ const navigation = [
   },
   {
     title: "Control",
-    src: "/habits",
+    src: "/control",
     icon: <IconControl />,
   },
   {
     title: "Gestión",
-    src: "/tasks",
+    src: "/managment",
     icon: <IconGestion />,
   },
   {
     title: "Noción",
-    src: "/notes",
+    src: "/notion",
     icon: <IconNote />,
   },
-  // {
-  //   title: "Finanzas",
-  //   src: "/finance",
-  //   icon: <IconFinance />,
-  // },
+
   {
     title: "Estadísticas",
-    src: "/finance",
+    src: "/stats",
     icon: <IconStats />,
   },
 ];
