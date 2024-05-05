@@ -56,7 +56,7 @@ const SidebarOptions: React.FC = () => {
         <li
           className="flex items-center pl-2 cursor-pointer"
           key={submenu.label}>
-          {submenu.icon}
+          <ChevronRight height={12} width={24} />
           <p className="line-clamp-1">{submenu.label}</p>
         </li>
       );
@@ -81,7 +81,11 @@ const SidebarOptions: React.FC = () => {
           menu.type === "functionality" ? (
             <>
               {<Separator />}
-              <li className=" text-slate-500">{menu.label}</li>
+
+              <li className=" flex items-center cursor-pointe ">
+                {menu.icon}
+                <p className="font-medium">{menu.label}</p>
+              </li>
               {menu.items && renderSubmenuItems(menu.items)}
             </>
           ) : menu.type === "button" ? (

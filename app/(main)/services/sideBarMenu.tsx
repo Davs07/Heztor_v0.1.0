@@ -7,7 +7,7 @@ import IconCalendarWeek from "../Icons/Calendar/IconCalendarWeek";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import IconNote from "../Icons/NavigationLinks/IconNote";
-import { Book, Folder, Plus, Star } from "lucide-react";
+import { Book, CalendarHeart, Folder, Plus, Star, Wallet } from "lucide-react";
 
 interface SidebarMenu {
   label: string;
@@ -39,12 +39,12 @@ export const controlNav: SidebarMenu[] = [
   },
   {
     label: "Finanzas",
-    icon: <IconCalendarMonth height={12} width={24} />,
+    icon: <Wallet height={12} width={24} />,
     type: "functionality",
   },
   {
     label: "Hábitos",
-    icon: <IconNote height={12} width={24} />,
+    icon: <CalendarHeart height={12} width={24} />,
     type: "functionality",
     items: [
       {
