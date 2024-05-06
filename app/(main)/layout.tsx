@@ -3,8 +3,8 @@
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
-import Navigation from "./_components/Navigation";
-import NavB from "./_components/NavB";
+import Navigation from "./_components/SupBar";
+import NavB from "./_components/NavBar";
 import { Button } from "@/components/ui/button";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {

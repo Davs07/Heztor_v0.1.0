@@ -15,12 +15,14 @@ import { Separator } from "@/components/ui/separator";
 import { usePathname } from "next/navigation";
 import { controlNav, notionNav, managmentNav } from "../services/sideBarMenu";
 import { SelectSeparator } from "@/components/ui/select";
+import Link from "next/link";
 
 interface SidebarMenu {
   label: string;
   icon: JSX.Element;
-  type: "button" | "filter" | "functionality";
+  type?: "button" | "filter" | "functionality";
   items?: SidebarMenu[];
+  src?: string;
 }
 
 const SidebarOptions: React.FC = () => {
@@ -41,12 +43,12 @@ const SidebarOptions: React.FC = () => {
 
   const renderSidebarItem = (item: SidebarMenu) => {
     return (
-      <>
+      <Link href={item.src ? item.src : "#"}>
         <li className="flex items-center cursor-pointer" key={item.label}>
           {item.icon}
           <p className="font-medium">{item.label}</p>
         </li>
-      </>
+      </Link>
     );
   };
 
@@ -81,11 +83,12 @@ const SidebarOptions: React.FC = () => {
           menu.type === "functionality" ? (
             <>
               {<Separator />}
-
-              <li className=" flex items-center cursor-pointe ">
-                {menu.icon}
-                <p className="font-medium">{menu.label}</p>
-              </li>
+              <Link href={menu.src ? menu.src : ""}>
+                <li className=" flex items-center cursor-pointe ">
+                  {menu.icon}
+                  <p className="font-medium">{menu.label}</p>
+                </li>
+              </Link>
               {menu.items && renderSubmenuItems(menu.items)}
             </>
           ) : menu.type === "button" ? (

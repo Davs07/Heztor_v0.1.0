@@ -75,6 +75,8 @@ function Navigation() {
           className={cn(
             "w-full h-full flex justify-between items-center text-sm"
           )}>
+          <DateLocal className=" sm:block hidden" />
+
           <label className="relative ">
             <span className="sr-only">Buscar</span>
             <span className="absolute inset-y-0 left-0 flex items-center pl-2 ">
@@ -84,7 +86,7 @@ function Navigation() {
               placeholder="Buscar alguna tarea, evento, hábito, nota..."
               type="text"
               className={cn(
-                "border  border-gray-200 pl-7 w-[50vw] h-8 outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
+                "border  border-gray-200 pl-7 w-[35vw] h-8 outline-none overflow-hidden  rounded-xl transition-all duration-500 ease-in-out hover:border-main-2 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 ",
                 isM && "w-4"
               )}
             />
@@ -95,11 +97,11 @@ function Navigation() {
               isMobile && "flex-wrap-reverse bg-main-superlight pb-4"
             )}>
             {/* <p>{saludarSegunHora()}</p> */}
-            <Separator orientation="vertical" className="h-5 sm:hidden block" />
+            {/* <Separator orientation="vertical" className="h-5 sm:hidden block" />
             <DateLocal className=" sm:block hidden" />
-            <Separator orientation="vertical" className="h-5" />
+            <Separator orientation="vertical" className="h-5" /> */}
             {/* Notifications */}
-            <HelpCircle/>
+            <HelpCircle />
             <Dialog>
               <DialogTrigger>
                 <Button

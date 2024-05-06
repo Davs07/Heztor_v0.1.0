@@ -43,7 +43,7 @@ function NavB() {
                   variant="ghost"
                   size="sm"
                   className={`group hover:bg-[#E6ECFF] rounded-xl ${
-                    pathname === Menu.src
+                    pathname.includes(Menu.src)
                       ? "  text-white hover:text-white bg-main-2 hover:bg-main-2 "
                       : ""
                   }   text-sm `}>
@@ -66,7 +66,7 @@ function NavB() {
             className="h-9 w-9 text-main-2 border-main-2 "
             variant={"outline"}
             size={"none"}>
-            <Plus  />
+            <Plus />
           </Button>
           <Plus color="white" />
         </div>
