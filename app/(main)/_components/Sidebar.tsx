@@ -8,6 +8,7 @@ import { useMediaQuery } from "usehooks-ts";
 import SidebarOptions from "./SidebarOptions";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api.js";
+import { Separator } from "@radix-ui/react-dropdown-menu";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -104,6 +105,8 @@ export default function Sidebar() {
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0 "
         )}>
+        {/* <h3 className="absolute left-5 top-2 text-main-2 font-medium">Control</h3> */}
+
         <div
           onClick={collapse}
           role="button"
@@ -136,7 +139,7 @@ export default function Sidebar() {
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "left-0  w-full"
         )}>
-        <nav className="bg-transparent px-2 py-2 w-full top-4 ">
+        <nav className="bg-transparent absolute px-2 py-2 w-full top-2 left-16 ">
           {isCollapsed && (
             <ChevronsRight
               onClick={resetWidth}

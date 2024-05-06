@@ -1,20 +1,10 @@
-import {
-  AlignLeft,
-  ArrowRight,
-  ChevronRight,
-  Plus,
-  PlusIcon,
-  SeparatorHorizontal,
-} from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import * as React from "react";
-import IconCalendarDay from "../Icons/Calendar/IconCalendarDay";
-import IconCalendarWeek from "../Icons/Calendar/IconCalendarWeek";
-import IconCalendarMonth from "../Icons/Calendar/IconCalendarMonth";
+
 import { Separator } from "@/components/ui/separator";
 
 import { usePathname } from "next/navigation";
 import { controlNav, notionNav, managmentNav } from "../services/sideBarMenu";
-import { SelectSeparator } from "@/components/ui/select";
 import Link from "next/link";
 
 interface SidebarMenu {
@@ -43,8 +33,10 @@ const SidebarOptions: React.FC = () => {
 
   const renderSidebarItem = (item: SidebarMenu) => {
     return (
-      <Link href={item.src ? item.src : "#"}>
-        <li className="flex items-center cursor-pointer" key={item.label}>
+      <Link
+        href={item.src ? item.src : "#"}
+        className={`flex py-2 ${pathname === item.src && "bg-main-2/10 rounded-lg text-main-2"}`}>
+        <li className={`flex items-center  cursor-pointer`} key={item.label}>
           {item.icon}
           <p className="font-medium">{item.label}</p>
         </li>
@@ -56,7 +48,7 @@ const SidebarOptions: React.FC = () => {
     return items.map((submenu) => {
       return (
         <li
-          className="flex items-center pl-2 cursor-pointer"
+          className="flex items-center py-2 pl-2 cursor-pointer"
           key={submenu.label}>
           <ChevronRight height={12} width={24} />
           <p className="line-clamp-1">{submenu.label}</p>
@@ -67,23 +59,26 @@ const SidebarOptions: React.FC = () => {
 
   const renderButton = (button: SidebarMenu) => {
     return (
-      <button
-        className="flex items-center cursor-pointer  text-main-2  "
-        key={button.label}>
-        {button.icon}
-        <p>{button.label}</p>
-      </button>
+      <></>
+      // <button
+      //   className="flex items-center cursor-pointer py-2 text-main-2  "
+      //   key={button.label}>
+      //   {button.icon}
+      //   <p className="text-gray-700">{button.label}</p>
+      // </button>
     );
   };
 
   return (
     <div className="w-full p-3 pt-8 flex flex-col gap-4 text-sm">
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col ">
         {sidebarItem.map((menu, index) =>
           menu.type === "functionality" ? (
             <>
-              {<Separator />}
-              <Link href={menu.src ? menu.src : ""}>
+              {/* {<Separator />} */}
+              <Link
+                href={menu.src ? menu.src : ""}
+                className={`flex py-2 ${pathname === menu.src && "bg-main-2/15 rounded-lg text-main-2"}`}>
                 <li className=" flex items-center cursor-pointe ">
                   {menu.icon}
                   <p className="font-medium">{menu.label}</p>
@@ -94,7 +89,7 @@ const SidebarOptions: React.FC = () => {
           ) : menu.type === "button" ? (
             <>
               {renderButton(menu)}
-              {index > 0 && <Separator />}
+              {/* {index > 0 && <Separator />} */}
             </>
           ) : (
             <>{renderSidebarItem(menu)}</>
