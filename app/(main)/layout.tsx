@@ -21,6 +21,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return redirect("/");
   }
 
+
   return (
     <div className="h-screen flex flex-row bg-main-superlight dark:bg-main-hiperdark ">
       <NavB />

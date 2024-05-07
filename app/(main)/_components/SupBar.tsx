@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/clerk-react";
-import { navigation } from "../services/NavigationLinks.js";
+import { navigation } from "../data/NavigationLinks.js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IconHelp from "../Icons/NavigationOptions/IconHelp.jsx";

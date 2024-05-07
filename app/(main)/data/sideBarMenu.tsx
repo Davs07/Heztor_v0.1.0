@@ -14,7 +14,7 @@ interface SidebarMenu {
   icon: JSX.Element;
   type?: "button" | "filter" | "functionality";
   items?: SidebarMenu[];
-  src?: string; 
+  src?: string;
 }
 
 export const controlNav: SidebarMenu[] = [
@@ -136,7 +136,7 @@ export const notionNav: SidebarMenu[] = [
     label: "Diario Personal",
     icon: <Book height={12} width={24} />,
     type: "functionality",
-    src: "/notion/daily",
+    src: "/notion/journal",
   },
   {
     label: "Notas",

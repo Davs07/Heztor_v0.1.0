@@ -12,27 +12,34 @@ const navigation = [
   {
     title: "Vista General",
     src: "/dashboard",
+    source: "/dashboard",
     icon: <IconDashboard />,
   },
   {
     title: "Control",
-    src: "/control",
+    src: "/control/day",
+    source: "/control",
     icon: <IconControl />,
   },
   {
     title: "Gestión",
-    src: "/managment",
+    src: "/managment/day",
+    source: "/managment",
+
     icon: <IconGestion />,
   },
   {
     title: "Noción",
-    src: "/notion",
+    src: "/notion/day",
+    source: "/notion",
+
     icon: <IconNote />,
   },
 
   {
     title: "Estadísticas",
     src: "/stats",
+    source: "/stats",
     icon: <IconStats />,
   },
 ];

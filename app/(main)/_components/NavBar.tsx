@@ -1,8 +1,8 @@
 "use client";
 
-import { navigation } from "../services/NavigationLinks.js";
+import { navigation } from "../data/NavigationLinks.js";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -43,13 +43,15 @@ function NavB() {
                   variant="ghost"
                   size="sm"
                   className={`group hover:bg-[#E6ECFF] rounded-xl ${
-                    pathname.includes(Menu.src)
+                    pathname.indexOf(Menu.source) === 0
                       ? "  text-white hover:text-white bg-main-2 hover:bg-main-2 "
                       : ""
                   }   text-sm `}>
                   <span
                     className={`text-lg group-hover:text-main-2 ${
-                      pathname === Menu.src ? "group-hover:text-white" : ""
+                      pathname.indexOf(Menu.source) === 0
+                        ? "group-hover:text-white"
+                        : ""
                     }`}>
                     {Menu.icon}
                   </span>

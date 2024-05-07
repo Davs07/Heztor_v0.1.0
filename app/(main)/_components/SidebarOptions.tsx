@@ -4,7 +4,7 @@ import * as React from "react";
 import { Separator } from "@/components/ui/separator";
 
 import { usePathname } from "next/navigation";
-import { controlNav, notionNav, managmentNav } from "../services/sideBarMenu";
+import { controlNav, notionNav, managmentNav } from "../data/sideBarMenu";
 import Link from "next/link";
 
 interface SidebarMenu {
@@ -22,11 +22,11 @@ const SidebarOptions: React.FC = () => {
   const pathname = usePathname();
 
   React.useEffect(() => {
-    if (pathname === "/control") {
+    if (pathname === "/control/day") {
       setSidebarItem(controlNav);
-    } else if (pathname === "/managment") {
+    } else if (pathname === "/managment/day") {
       setSidebarItem(managmentNav);
-    } else if (pathname === "/notion") {
+    } else if (pathname === "/notion/day") {
       setSidebarItem(notionNav);
     }
   }, [pathname]);
