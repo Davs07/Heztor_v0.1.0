@@ -1,27 +1,7 @@
 import { Button } from "@/components/ui/button";
 import HabitWrapper from "@/app/(main)/_components/HabitWrapper";
-import { redirect } from "next/navigation";
 
-import HabitsTracker from "@/app/(main)/_components/HabitsTracker";
-import {
-  Apple,
-  BookOpenText,
-  BriefcaseBusiness,
-  Brush,
-  Coins,
-  Cross,
-  Dumbbell,
-  Ellipsis,
-  GraduationCap,
-  HeartHandshake,
-  Popcorn,
-  Rocket,
-  Settings2,
-  SquareUserRound,
-  TreeDeciduous,
-  TrendingUp,
-  Workflow,
-} from "lucide-react";
+import { Ellipsis, Settings2 } from "lucide-react";
 import TittleSection from "@/app/(main)/_components/TittleSection";
 
 enum HabitCategory {
@@ -82,8 +62,6 @@ const habitsPage = () => {
       category: HabitCategory.P,
     },
   ];
-
-  // return redirect("/control/day");
 
   return (
     <>
