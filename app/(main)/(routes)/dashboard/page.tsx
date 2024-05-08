@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { AreaChartHero } from "../../_components/ChartComponent";
+import { Calendar } from "@/components/ui/calendar";
 
 interface Task {
   id: number;
@@ -125,6 +126,8 @@ const DashboardPage = () => {
 
     return saludo + ", Davy";
   }
+
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   return (
     <div className=" w-full h-full flex-row flex ">
@@ -324,23 +327,12 @@ const DashboardPage = () => {
           </div>
         </main>
       </div>
-      <div className="h-full w-96 bg-white">
+      <div className="h-full w-96 bg-white  overflow-auto">
+        <div className="flex justify-center">
+          <Calendar mode="single" selected={date} onSelect={setDate} />
+        </div>
         <div className="bg-white dark:bg-gray-900 overflow-auto w-full p-2  ">
           <Card className="w-full">
-            <CardHeader className="border-b flex items-center justify-center  w-full bg-white sticky top-0">
-              <div className="flex items-center space-x-4">
-                <Button size="icon" variant="ghost">
-                  <ChevronLeftIcon className="h-5 w-5" />
-                </Button>
-                <CalendarIcon className="h-6 w-6" />
-                <div className="text-sm font-medium leading-none">
-                  April 26, 2024
-                </div>
-                <Button size="icon" variant="ghost">
-                  <ChevronRightIcon className="h-5 w-5" />
-                </Button>
-              </div>
-            </CardHeader>
             <CardContent className="p-0 ">
               <div className="grid border-t border-gray-200 dark:border-gray-800 last:border-b divide-y divide-gray-200 dark:divide-gray-800">
                 {tasks.map((task) => (
