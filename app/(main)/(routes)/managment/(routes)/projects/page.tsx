@@ -71,30 +71,30 @@ function page() {
             ))}
         </div>
         <div className=" flex flex-col h-full items-center justify-start">
-          <h4 className="text-xl text-rose-500">
-            {projects
-              .filter((project) => project.status === "completed")
-              .map((project, index) => (
-                <Card>
-                  <CardHeader>
-                    <h3 className="text-lg" key={index}>
-                      {project.name}
-                    </h3>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm">{project.description}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge>{project.priority}</Badge>
-                      <Badge>{project.status}</Badge>
-                      <Badge>{project.startDate.toLocaleString()}</Badge>
-                      <Badge>{project.endDate.toLocaleString()}</Badge>
-                    </div>
-                  </CardFooter>
-                </Card>
-              ))}
-          </h4>
+          <h4 className="text-xl text-rose-500">Completed</h4>
+
+          {projects
+            .filter((project) => project.status === "completed")
+            .map((project, index) => (
+              <Card>
+                <CardHeader>
+                  <h3 className="text-lg" key={index}>
+                    {project.name}
+                  </h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm">{project.description}</p>
+                </CardContent>
+                <CardFooter>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>{project.priority}</Badge>
+                    <Badge>{project.status}</Badge>
+                    <Badge>{project.startDate.toLocaleString()}</Badge>
+                    <Badge>{project.endDate.toLocaleString()}</Badge>
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
         </div>
       </div>
     </div>

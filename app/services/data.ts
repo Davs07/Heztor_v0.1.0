@@ -115,6 +115,7 @@ export const managementCollection: ManagementCollection = {
       startDate: new Date("2024-05-01"),
       endDate: new Date("2024-05-15"),
       priority: "P1",
+      tags: ["web", "code", "startup"],
     },
     {
       id: 2,
@@ -127,6 +128,7 @@ export const managementCollection: ManagementCollection = {
       startDate: new Date("2024-05-15"),
       endDate: new Date("2024-06-01"),
       priority: "P2",
+      tags: ["fitness", "health"],
     },
   ],
 };

@@ -66,6 +66,7 @@ interface Project {
   startDate: Date;
   endDate: Date;
   priority: Priority;
+  tags: string[];
 }
 
 export interface ManagementCollection {
