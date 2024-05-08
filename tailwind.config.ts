@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,24 +19,23 @@ const config = {
     },
     extend: {
       boxShadow: {
-        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-        '0':'rgba(149, 157, 165, 0.2) 0px 8px 24px;',
-        '1':'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
-        '2':'rgba(0, 0, 0, 0.08) 0px 4px 12px;',
-        '3':'rgba(0, 0, 0, 0.08) 0px 3px 6px;',
-        '4':'rgba(0, 0, 0, 0.08) 0px 64px 128px;',
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        "0": "rgba(149, 157, 165, 0.2) 0px 8px 24px;",
+        "1": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;",
+        "2": "rgba(0, 0, 0, 0.08) 0px 4px 12px;",
+        "3": "rgba(0, 0, 0, 0.08) 0px 3px 6px;",
+        "4": "rgba(0, 0, 0, 0.08) 0px 64px 128px;",
       },
       colors: {
-        "main-1": "#0A6BFF", 
-        "main-2": "#233DFF", 
+        "main-1": "#0A6BFF",
+        "main-2": "#233DFF",
         "main-light": "#5CB6F9",
         "main-extralight": "#CAE8FF",
-        "main-superlight":"#F4F6FF",
-        "main-dark": "#12229D", 
+        "main-superlight": "#F4F6FF",
+        "main-dark": "#12229D",
         "main-extradark": "#050A30",
-        "main-superdark": "#1A1B26",
+        "main-superdark": "#101726",
         "main-hiperdark": "#000211",
-
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -94,6 +93,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

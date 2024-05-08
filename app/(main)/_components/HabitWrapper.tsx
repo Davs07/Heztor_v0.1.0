@@ -21,14 +21,24 @@ import {
   Workflow,
 } from "lucide-react";
 
-interface Habit {
+/* interface Habit {
   id: number;
   name: string;
   description: string;
   frequency: string;
   priority: string;
   category: HabitCategory;
+} */
+
+interface Habit {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  frequency: string;
+  priority: Priority;
 }
+type Priority = "P1" | "P2" | "P3" | "P4";
 
 enum HabitCategory {
   A = "Salud",
@@ -133,7 +143,7 @@ function HabitWrapper({ habit }: { habit: Habit }) {
     divs.push(
       <div
         key={i}
-        className="h-8 w-8 border-2 border-main-extradark/30 rounded-full content-center text-center">
+        className="h-8 w-8 border-2 border-main-extradark/30 rounded-lg content-center text-center">
         {i + 1}
       </div>
     );
@@ -150,16 +160,16 @@ function HabitWrapper({ habit }: { habit: Habit }) {
   let colour = ``;
 
   switch (habit.priority) {
-    case "A":
+    case "P1":
       colour = " border-[#0fbcf9]* bg-[#0fbcf9]/[0.02]";
       break;
-    case "B":
+    case "P2":
       colour = "border-main-2* bg-main-2/[0.02]";
       break;
-    case "C":
+    case "P3":
       colour = "border-[#005bc5]* bg-[#005bc5]/[0.02]";
       break;
-    case "D":
+    case "P4":
       colour = "border-[#0fbcf9]* bg-[#0fbcf9]/[0.02]";
       break;
     default:
@@ -171,64 +181,11 @@ function HabitWrapper({ habit }: { habit: Habit }) {
   // console.log(categoryProperties[habit.category].icon,)
 
   return (
-    <Wrapper
-      /* color={colour} */ className="flex flex-row  justify-between items-center">
-      {/* info */}
-      <div className=" w-[240px]">
-        <div className="flex items-center justify-start gap-1">
-          {/* <Button
-            variant={"ghost"}
-            size={"i"}
-            className={` bg-[${categoryProperties[habit.category].color}]`}> */}
-          {/* <div className="bg-[#E9EAF2] rounded-lg flex items-center h-max p-1">
-            {categoryProperties[habit.category].icon}
-          </div> */}
-
-          <div>
-            {/* <p className="text-[10px]">{habit.category}</p> */}
-            <h5>{habit.name}</h5>
-            <div className="flex flex-col items-start justify-start gap-1">
-              <div className="text-xs flex gap-1 text-slate-400  ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  className="bi bi-calendar3-week"
-                  fill="currentColor"
-                  viewBox="0 0 16 16">
-                  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
-                  <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m2-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-                </svg>
-                <p>{habit.frequency}</p>
-              </div>
-              <div className="text-xs flex gap-1 text-slate-400  ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  fill="currentColor"
-                  className="bi bi-flag"
-                  viewBox="0 0 16 16">
-                  <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z" />
-                </svg>
-                <p>{habit.priority}</p>
-              </div>
-            </div>
-          </div>
+    <Wrapper className="flex flex-col  justify-between items-center gap-3">
+      <div className=" w-full flex justify-between">
+        <div>
+          <h5>{habit.name}</h5>
         </div>
-      </div>
-
-      {/* days */}
-
-      <div className="max-w-[320px] ">
-        <div className="flex flex-row w-full justify-between gap-4">
-          {daysDivs}
-        </div>
-        <div className="flex flex-row w-full justify-between gap-4">{divs}</div>
-      </div>
-
-      {/* settings */}
-      <div className="">
         <Button
           variant={"ghost"}
           size={"i"}
@@ -243,6 +200,44 @@ function HabitWrapper({ habit }: { habit: Habit }) {
             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
           </svg>
         </Button>
+      </div>
+
+      {/* content: days */}
+
+      <div className="w-max flex flex-col items-start">
+        <div className="flex flex-row w-full justify-between gap-5 text-center">
+          {daysDivs}
+        </div>
+        <div className="flex flex-row w-full justify-between gap-5">{divs}</div>
+      </div>
+
+      {/* footer: info */}
+      <div className="flex justify-start gap-2 w-full">
+        <div className="text-xs flex gap-1 text-slate-400  ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            className="bi bi-calendar3-week"
+            fill="currentColor"
+            viewBox="0 0 16 16">
+            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
+            <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m2-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+          </svg>
+          <p>{habit.frequency}</p>
+        </div>
+        <div className="text-xs flex gap-1 text-slate-400  ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            fill="currentColor"
+            className="bi bi-flag"
+            viewBox="0 0 16 16">
+            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z" />
+          </svg>
+          <p>{habit.priority}</p>
+        </div>
       </div>
     </Wrapper>
   );

@@ -159,7 +159,7 @@ const tasksPage: React.FC = () => {
 
   return (
     <>
-      <div className="w-[100vw] h-16 flex items-center justify-around  bg-main-superlight dark:bg-main-hiperdark fixed  ">
+      <div className="w-full h-16 flex items-center justify-around  bg-main-superlight dark:bg-main-hiperdark fixed  ">
         <div className="w-12"></div>
         <TittleSection className=" ">Lista de tareas 1</TittleSection>
         <div className="flex gap-2 w-12 justify-around">

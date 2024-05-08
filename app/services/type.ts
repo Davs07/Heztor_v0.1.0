@@ -5,6 +5,8 @@ interface Habit {
   name: string;
   description: string;
   category: string;
+  frequency: string;
+  priority: Priority;
 }
 
 interface FinancialRecord {
@@ -58,6 +60,12 @@ interface Project {
   description: string;
   tasks: Task[];
   events: Event[];
+  favourite: boolean;
+  idUser?: number;
+  status: "to do" | "in progress" | "complete";
+  startDate: Date;
+  endDate: Date;
+  priority: Priority;
 }
 
 export interface ManagementCollection {
@@ -78,6 +86,7 @@ interface Note {
   id: number;
   title: string;
   content: string;
+  favourite: boolean;
 }
 
 export interface NotionCollection {

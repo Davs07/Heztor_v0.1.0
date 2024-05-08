@@ -26,6 +26,7 @@ import UserItem from "./UserItem";
 import { Separator } from "@/components/ui/separator";
 import DateLocal from "./DateLocal";
 import { HelpCircle } from "lucide-react";
+import { ModeToggle } from "@/components/micro/mode-toggle";
 
 function Navigation() {
   const navigationSec = navigation;
@@ -121,6 +122,7 @@ function Navigation() {
                 </DialogHeader>
               </DialogContent>
             </Dialog>
+            <ModeToggle />
 
             <UserItem />
           </ul>

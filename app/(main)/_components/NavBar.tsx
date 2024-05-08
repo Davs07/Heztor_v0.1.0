@@ -48,9 +48,9 @@ function NavB() {
                       : ""
                   }   text-sm `}>
                   <span
-                    className={`text-lg group-hover:text-main-2 ${
+                    className={`text-lg hover:text-main-2 ${
                       pathname.indexOf(Menu.source) === 0
-                        ? "group-hover:text-white"
+                        ? "group-hover:text-white text-white"
                         : ""
                     }`}>
                     {Menu.icon}

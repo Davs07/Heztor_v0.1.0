@@ -1,8 +1,7 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CircleCheck } from "lucide-react";
 import * as React from "react";
-
 import { Separator } from "@/components/ui/separator";
-
+import { controlCollection } from "@/app/services/data";
 import { usePathname } from "next/navigation";
 import { controlNav, notionNav, managmentNav } from "../data/sideBarMenu";
 import Link from "next/link";
@@ -16,12 +15,12 @@ interface SidebarMenu {
 }
 
 const SidebarOptions: React.FC = () => {
-  const [sidebarItem, setSidebarItem] =
-    React.useState<SidebarMenu[]>(controlNav);
-
+  const controlData = controlCollection;
   const pathname = usePathname();
+  const [sidebarItem, setSidebarItem] = React.useState<SidebarMenu[]>([]);
 
-  React.useEffect(() => {
+  // Función para establecer el menú lateral inicial
+  const initializeSidebar = () => {
     if (pathname === "/control/day") {
       setSidebarItem(controlNav);
     } else if (pathname === "/managment/day") {
@@ -29,7 +28,12 @@ const SidebarOptions: React.FC = () => {
     } else if (pathname === "/notion/day") {
       setSidebarItem(notionNav);
     }
-  }, [pathname]);
+  };
+
+  // Llama a la función de inicialización al montar el componente
+  React.useEffect(() => {
+    initializeSidebar();
+  }, []); // Sin dependencias para asegurar que se ejecute solo una vez al montar el componente
 
   const renderSidebarItem = (item: SidebarMenu) => {
     return (
@@ -38,81 +42,60 @@ const SidebarOptions: React.FC = () => {
         className={`flex py-2 ${pathname === item.src && "bg-main-2/10 rounded-lg text-main-2"}`}>
         <li className={`flex items-center  cursor-pointer`} key={item.label}>
           {item.icon}
-          <p className="font-medium">{item.label}</p>
+          <p className="">{item.label}</p>
         </li>
       </Link>
     );
   };
 
   const renderSubmenuItems = (items: SidebarMenu[]) => {
-    return items.map((submenu) => {
-      return (
-        <li
-          className="flex items-center py-2 pl-2 cursor-pointer"
-          key={submenu.label}>
+    return items.map((submenu) => (
+      <div className="py-2 pl-1 cursor-pointer" key={submenu.label}>
+        <div className="flex items-center ">
           <ChevronRight height={12} width={24} />
           <p className="line-clamp-1">{submenu.label}</p>
-        </li>
-      );
-    });
+        </div>
+        <ul className="pl-2">
+          {controlData.habits.map((habit, id) => (
+            <li className="flex items-center py-2 cursor-pointer" key={id}>
+              <CircleCheck size={10} width={24} />
+              <p className="line-clamp-1">{habit.name}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ));
   };
 
-  const renderButton = (button: SidebarMenu) => {
-    return (
-      <></>
-      // <button
-      //   className="flex items-center cursor-pointer py-2 text-main-2  "
-      //   key={button.label}>
-      //   {button.icon}
-      //   <p className="text-gray-700">{button.label}</p>
-      // </button>
-    );
-  };
+  const renderButton = (button: SidebarMenu) => <></>; // No renderizamos botones por ahora
 
   return (
     <div className="w-full p-3 pt-8 flex flex-col gap-4 text-sm">
-      <ul className="flex flex-col ">
-        {sidebarItem.map((menu, index) =>
-          menu.type === "functionality" ? (
-            <>
-              {/* {<Separator />} */}
-              <Link
-                href={menu.src ? menu.src : ""}
-                className={`flex py-2 ${pathname === menu.src && "bg-main-2/15 rounded-lg text-main-2"}`}>
-                <li className=" flex items-center cursor-pointe ">
-                  {menu.icon}
-                  <p className="font-medium">{menu.label}</p>
-                </li>
-              </Link>
-              {menu.items && renderSubmenuItems(menu.items)}
-            </>
-          ) : menu.type === "button" ? (
-            <>
-              {renderButton(menu)}
-              {/* {index > 0 && <Separator />} */}
-            </>
-          ) : (
-            <>{renderSidebarItem(menu)}</>
-          )
-        )}
+      <ul className="flex flex-col">
+        {sidebarItem.map((menu, index) => (
+          <React.Fragment key={index}>
+            {menu.type === "functionality" ? (
+              <>
+                <Link
+                  href={menu.src ? menu.src : ""}
+                  className={`flex py-2 ${pathname === menu.src && "bg-main-2/15 rounded-lg text-main-2"}`}>
+                  <li className="flex items-center cursor-pointer">
+                    {menu.icon}
+                    <p className="">{menu.label}</p>
+                  </li>
+                </Link>
+                {menu.items && renderSubmenuItems(menu.items)}
+              </>
+            ) : menu.type === "button" ? (
+              renderButton(menu)
+            ) : (
+              renderSidebarItem(menu)
+            )}
+          </React.Fragment>
+        ))}
       </ul>
     </div>
   );
 };
 
 export default SidebarOptions;
-
-{
-  /* <ul className="flex flex-col   gap-2">
-  <div className="flex items-center justify-between font-semibold text-slate-500">
-    <p className="">Mis proyectos</p>
-    <PlusIcon height={16} width={24} />
-  </div>
-  {taskList.map((task) => (
-    <li key={task.id} className=" flex flex-row items-center w-full   ">
-      <AlignLeft height={12} className="min-w-6" />
-      <p className="line-clamp-1 ">{task.name}</p>
-    </li>
-  ))}
-</ul> */
-}

@@ -4,7 +4,17 @@ import IconHabit from "../Icons/NavigationLinks/IconHabit";
 import IconFinance from "../Icons/NavigationLinks/IconFinance";
 import IconStats from "../Icons/NavigationLinks/IconStats";
 import IconNote from "../Icons/NavigationLinks/IconNote";
-import { Goal } from "lucide-react";
+import {
+  BarChart2,
+  BarChart3,
+  FolderCog,
+  FolderDot,
+  FolderDotIcon,
+  FolderKanban,
+  FolderPen,
+  Goal,
+  Home,
+} from "lucide-react";
 import { IconControl } from "../Icons/NavigationLinks/IconControl";
 import { IconGestion } from "../Icons/NavigationLinks/IconGestion";
 
@@ -13,34 +23,32 @@ const navigation = [
     title: "Vista General",
     src: "/dashboard",
     source: "/dashboard",
-    icon: <IconDashboard />,
+    icon: <Home size={18} strokeWidth={2} />,
   },
   {
     title: "Control",
     src: "/control/day",
     source: "/control",
-    icon: <IconControl />,
+    icon: <FolderCog size={18}/>,
   },
   {
     title: "Gestión",
     src: "/managment/day",
     source: "/managment",
-
-    icon: <IconGestion />,
+    icon: <FolderKanban size={18}/>,
   },
   {
     title: "Noción",
     src: "/notion/day",
     source: "/notion",
-
-    icon: <IconNote />,
+    icon: <FolderPen size={18}/>,
   },
 
   {
     title: "Estadísticas",
     src: "/stats",
     source: "/stats",
-    icon: <IconStats />,
+    icon: <BarChart3 size={18} />,
   },
 ];
 

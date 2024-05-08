@@ -1,8 +1,13 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import HabitWrapper from "@/app/(main)/_components/HabitWrapper";
 
 import { Ellipsis, Settings2 } from "lucide-react";
 import TittleSection from "@/app/(main)/_components/TittleSection";
+
+import { controlCollection } from "@/app/services/data";
+import { useState } from "react";
 
 enum HabitCategory {
   A = "Salud",
@@ -23,49 +28,44 @@ enum HabitCategory {
   P = "Programar",
 }
 
+type Priority = "P1" | "P2" | "P3" | "P4";
+
 interface Habit {
   id: number;
   name: string;
   description: string;
+  category: string;
   frequency: string;
-  priority: string;
-  category: HabitCategory;
+  priority: Priority;
 }
 
+const generateUniqueId = () => {
+  const timestamp = new Date().getTime(); // Obtener la marca de tiempo actual
+  const randomSuffix = Math.floor(Math.random() * 10000); // Generar un sufijo aleatorio
+  // return `${timestamp}-${randomSuffix}`;
+  return timestamp;
+};
+
 const habitsPage = () => {
-  const habits: Habit[] = [
-    {
-      id: 1,
-      name: "Beber agua (3 litros)",
-      description:
-        "Habit 1 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem rerum excepturi temporibus veritatis. Hic odio beatae dolorem sint voluptatibus dicta facere accusantium est? Nam minima repellendus ea voluptatibus recusandae debitis.",
-      frequency: "Todos los días",
-      priority: "A",
-      category: HabitCategory.A,
-    },
-    {
-      id: 2,
-      name: "Hacer ejercicios",
-      description:
-        "Habit 2 description. Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
-      frequency: "4 veces por semana",
-      priority: "B",
-      category: HabitCategory.B,
-    },
-    {
-      id: 3,
-      name: "Programar",
-      description:
-        "Habit 3 description. Exercitationem rerum excepturi temporibus veritatis. Hic odio beatae dolorem sint voluptatibus dicta facere accusantium est? Nam minima repellendus ea voluptatibus recusandae debitis.",
-      frequency: "3 veces por semana",
-      priority: "C",
-      category: HabitCategory.P,
-    },
-  ];
+  const [habits, setHabits] = useState(controlCollection.habits);
+  const agregarHabit = () => {
+    // Lógica para agregar la nueva tarea
+    const nuevaTarea: Habit = {
+      id: generateUniqueId(), // Generar un ID único para la nueva tarea
+      name: "Nueva tarea",
+      description: "Descripción de la nueva tarea",
+      frequency: "Frecuencia de la nueva tarea",
+      priority: "P1",
+      category: "sa", // Puedes asignar una categoría predeterminada o dejarla en blanco
+    };
+
+    // Actualizar el estado con la nueva tarea
+    setHabits([...habits, nuevaTarea]);
+  };
 
   return (
     <>
-      <div className="w-[100vw] h-16 flex items-center justify-around bg-main-superlight dark:bg-main-superdark fixed">
+      <div className="w-full h-16 flex items-center justify-around bg-main-superlight dark:bg-main-superdark fixed">
         <div className="w-12"></div>
         <TittleSection>Mis hábitos</TittleSection>
         <div className="flex gap-2 w-12 justify-around">
@@ -78,6 +78,7 @@ const habitsPage = () => {
           <HabitWrapper habit={habit} key={habit.id} />
         ))}
         <Button
+          onClick={agregarHabit}
           variant={"ghost"}
           className="flex mt-1 justify-center text-sm items-center text-main-extradark/50 gap-1 group hover:text-main-extradark/70">
           <svg
@@ -94,7 +95,6 @@ const habitsPage = () => {
           </svg>
           <p>Añadir hábito</p>
         </Button>
-        {/* <HabitsTracker /> */}
       </div>
     </>
   );

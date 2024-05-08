@@ -14,18 +14,24 @@ export const controlCollection: ControlCollection = {
       name: "Morning Exercise",
       description: "30-minute workout routine",
       category: "Health",
+      frequency: "Everyday",
+      priority: "P1",
     },
     {
       id: 2,
       name: "Reading",
       description: "Read one chapter of a book",
       category: "Personal Development",
+      frequency: "Everyday",
+      priority: "P2",
     },
     {
       id: 3,
       name: "Meditation",
       description: "10-minute meditation session",
       category: "Mindfulness",
+      frequency: "Everyday",
+      priority: "P3",
     },
   ],
   wallet: {
@@ -104,6 +110,11 @@ export const managementCollection: ManagementCollection = {
       description: "Redesigning company website",
       tasks: [],
       events: [],
+      favourite: true,
+      status: "to do",
+      startDate: new Date("2024-05-01"),
+      endDate: new Date("2024-05-15"),
+      priority: "P1",
     },
     {
       id: 2,
@@ -111,6 +122,11 @@ export const managementCollection: ManagementCollection = {
       description: "Launching new product line",
       tasks: [],
       events: [],
+      favourite: false,
+      status: "in progress",
+      startDate: new Date("2024-05-15"),
+      endDate: new Date("2024-06-01"),
+      priority: "P2",
     },
   ],
 };
@@ -131,11 +147,17 @@ export const notionCollection: NotionCollection = {
     },
   ],
   notes: [
-    { id: 1, title: "Meeting Notes", content: "Notes from the team meeting." },
+    {
+      id: 1,
+      title: "Meeting Notes",
+      content: "Notes from the team meeting.",
+      favourite: true,
+    },
     {
       id: 2,
       title: "Project Ideas",
       content: "Brainstorming ideas for the new project.",
+      favourite: false,
     },
   ],
 };
