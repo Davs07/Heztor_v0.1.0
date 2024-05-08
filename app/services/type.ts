@@ -62,7 +62,7 @@ interface Project {
   events: Event[];
   favourite: boolean;
   idUser?: number;
-  status: "to do" | "in progress" | "complete";
+  status: "to do" | "in progress" | "completed";
   startDate: Date;
   endDate: Date;
   priority: Priority;

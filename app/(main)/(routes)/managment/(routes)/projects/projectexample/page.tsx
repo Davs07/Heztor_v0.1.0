@@ -7,8 +7,8 @@ function page() {
   const [projects, setProjects] = React.useState(managementCollection.projects);
 
   return (
-    <div className="w-full flex flex-col items-center justify-around  bg-main-superlight dark:bg-main-hiperdark fixed  ">
-      <div>
+    <div className="w-full h-full flex flex-col items-center justify-around  bg-main-superlight dark:bg-main-hiperdark fixed  ">
+      <div className="flex w-full justify-center items-center text-center">
         <h3 className="text-main-2 text-3xl">Projectos</h3>
       </div>
       <div>
