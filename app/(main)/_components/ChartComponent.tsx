@@ -1,64 +1,39 @@
 import { AreaChart } from "@tremor/react";
+import { LineChart } from '@tremor/react';
 
-const chartdata = [
+const chartData = [
   {
     date: "Mar 22",
-    SemiAnalysis: 3322,
-    "The Pragmatic Engineer": 2194,
+    Projects: 10,
+    Tasks: 20,
+    Events: 15,
+    Habits: 30,
   },
   {
     date: "Apr 22",
-    SemiAnalysis: 3470,
-    "The Pragmatic Engineer": 2108,
+    Projects: 15,
+    Tasks: 25,
+    Events: 20,
+    Habits: 35,
   },
-  {
-    date: "May 22",
-    SemiAnalysis: 3475,
-    "The Pragmatic Engineer": 1812,
-  },
-  {
-    date: "Jun 22",
-    SemiAnalysis: 3129,
-    "The Pragmatic Engineer": 1726,
-  },
-  {
-    date: "Jul 22",
-    SemiAnalysis: 3490,
-    "The Pragmatic Engineer": 1982,
-  },
-  {
-    date: "Aug 22",
-    SemiAnalysis: 2903,
-    "The Pragmatic Engineer": 2012,
-  },
-  {
-    date: "Sep 22",
-    SemiAnalysis: 2643,
-    "The Pragmatic Engineer": 2342,
-  },
-  {
-    date: "Sep 22",
-    SemiAnalysis: 2643,
-    "The Pragmatic Engineer": 2342,
-  },
+  // Agrega más datos aquí según sea necesario
 ];
 
-const dataFormatter = (number: number) =>
-  `$${Intl.NumberFormat("us").format(number).toString()}`;
+const dataFormatter = (number: number) => number.toString();
 
 export function AreaChartHero() {
   return (
-    <AreaChart
+    <LineChart
       className="h-60"
-      data={chartdata}
+      data={chartData}
       index="date"
-      categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-      colors={["indigo", "rose"]}
+      categories={["Projects", "Tasks", "Events", "Habits"]}
+      colors={["indigo", "blue", "green", "cyan"]}
       valueFormatter={dataFormatter}
       yAxisWidth={60}
       showXAxis={true}
       showLegend={false}
-      onValueChange={(v) => console.log(v)}
+      onValueChange={(value) => console.log(value)}
     />
   );
 }
