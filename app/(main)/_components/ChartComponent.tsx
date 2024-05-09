@@ -1,5 +1,5 @@
-import { AreaChart } from "@tremor/react";
-import { LineChart } from '@tremor/react';
+import { AreaChart, BarChart } from "@tremor/react";
+import { LineChart } from "@tremor/react";
 
 const chartData = [
   {
@@ -16,23 +16,44 @@ const chartData = [
     Events: 20,
     Habits: 35,
   },
-  // Agrega más datos aquí según sea necesario
+  {
+    date: "May 22",
+    Projects: 20,
+    Tasks: 30,
+    Events: 25,
+    Habits: 40,
+  },
+  {
+    date: "Mar 22",
+    Projects: 10,
+    Tasks: 20,
+    Events: 15,
+    Habits: 30,
+  },
+  {
+    date: "Apr 22",
+    Projects: 15,
+    Tasks: 25,
+    Events: 20,
+    Habits: 35,
+  },
+  {
+    date: "May 22",
+    Projects: 20,
+    Tasks: 30,
+    Events: 25,
+    Habits: 40,
+  },
 ];
-
-const dataFormatter = (number: number) => number.toString();
 
 export function AreaChartHero() {
   return (
-    <LineChart
+    <AreaChart
       className="h-60"
       data={chartData}
       index="date"
       categories={["Projects", "Tasks", "Events", "Habits"]}
-      colors={["indigo", "blue", "green", "cyan"]}
-      valueFormatter={dataFormatter}
-      yAxisWidth={60}
-      showXAxis={true}
-      showLegend={false}
+      colors={["green", "blue", "yellow", "rose"]}
       onValueChange={(value) => console.log(value)}
     />
   );
