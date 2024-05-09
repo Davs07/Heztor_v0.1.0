@@ -1,6 +1,7 @@
+export type Priority = "P1" | "P2" | "P3" | "P4";
 // Control Page
 
-interface Habit {
+export interface Habit {
   id: number;
   name: string;
   description: string;
@@ -9,7 +10,7 @@ interface Habit {
   priority: Priority;
 }
 
-interface FinancialRecord {
+export interface FinancialRecord {
   id: number;
   description: string;
   amount: number;
@@ -17,7 +18,7 @@ interface FinancialRecord {
   idWaller: number;
 }
 
-interface Wallet {
+export interface Wallet {
   id: number;
   name: string;
   balance: number;
@@ -32,9 +33,7 @@ export interface ControlCollection {
 
 // Managment Page
 
-type Priority = "P1" | "P2" | "P3" | "P4";
-
-interface Task {
+export interface Task {
   id: number;
   name: string;
   description?: string;
@@ -44,7 +43,7 @@ interface Task {
   status: boolean;
 }
 
-interface Event {
+export interface Event {
   id: number;
   name: string;
   description: string;
@@ -54,12 +53,10 @@ interface Event {
   status: boolean;
 }
 
-interface Project {
+export interface Project {
   id: number;
   name: string;
   description: string;
-  tasks: Task[];
-  events: Event[];
   favourite: boolean;
   idUser?: number;
   status: "to do" | "in progress" | "completed";
@@ -77,13 +74,13 @@ export interface ManagementCollection {
 
 // Notion Page
 
-interface DiaryEntry {
+export interface DiaryEntry {
   id: number;
   date: Date;
   content: string;
 }
 
-interface Note {
+export interface Note {
   id: number;
   title: string;
   content: string;
