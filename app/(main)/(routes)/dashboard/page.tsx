@@ -143,10 +143,28 @@ const DashboardPage = () => {
               ¡Gestionemos tu día satisfactoriamente!
             </CardDescription>
           </div>
-          <div className="grid gap-6  lg:grid-cols-2">
-            <CardContent>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-lg bg-white p-4 dark:bg-gray-800">
+          <div className="grid gap-4  lg:grid-cols-2">
+            <CardContent className="grid-rows-2 grid h-full gap-0 ">
+              <div className="grid h-40 bg-white rounded-xl sm:grid-cols-2 lg:grid-cols-4 ">
+                <div className="rounded-lg  p-4  dark:bg-gray-800">
+                  <h3 className="text-lg font-semibold">Projects</h3>
+                  <p className="text-4xl font-bold">12</p>
+                </div>
+                <div className="rounded-lg  p-4 dark:bg-gray-800">
+                  <h3 className="text-lg font-semibold">Tasks</h3>
+                  <p className="text-4xl font-bold">48</p>
+                </div>
+                <div className="rounded-lg  p-4 dark:bg-gray-800">
+                  <h3 className="text-lg font-semibold">Deadlines</h3>
+                  <p className="text-4xl font-bold">6</p>
+                </div>
+                <div className="rounded-lg  p-4 dark:bg-gray-800">
+                  <h3 className="text-lg font-semibold">Deadlines</h3>
+                  <p className="text-4xl font-bold">6</p>
+                </div>
+              </div>
+              <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
+                <div className="rounded-lg bg-white p-4  dark:bg-gray-800">
                   <h3 className="text-lg font-semibold">Projects</h3>
                   <p className="text-4xl font-bold">12</p>
                 </div>
@@ -161,7 +179,7 @@ const DashboardPage = () => {
               </div>
             </CardContent>
 
-            <Card className="border-none">
+            <Card className="border-none w-full shadow-none h-[400px] bg-transparent">
               <CardHeader>
                 <CardTitle>Actividad</CardTitle>
                 <CardDescription>Esta semana ▿</CardDescription>

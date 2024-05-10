@@ -3,53 +3,60 @@ import { LineChart } from "@tremor/react";
 
 const chartData = [
   {
-    date: "Mar 22",
+    date: "Lunes",
     Projects: 15,
     Tasks: 21,
     Events: 17,
     Habits: 33,
   },
   {
-    date: "Apr 22",
+    date: "Martes",
     Projects: 15,
     Tasks: 25,
     Events: 23,
     Habits: 5,
   },
   {
-    date: "May 22",
+    date: "Miércoles",
     Projects: 22,
     Tasks: 33,
     Events: 52,
     Habits: 43,
   },
   {
-    date: "Jun 22",
+    date: "Jueves",
     Projects: 5,
     Tasks: 17,
     Events: 27,
     Habits: 33,
   },
   {
-    date: "Jul 22",
+    date: "Viernes",
     Projects: 7,
     Tasks: 12,
     Events: 15,
     Habits: 23,
   },
   {
-    date: "Aug 22",
+    date: "Sábado",
     Projects: 23,
     Tasks: 13,
     Events: 15,
     Habits: 50,
+  },
+  {
+    date: "Domingo",
+    Projects: 13,
+    Tasks: 25,
+    Events: 35,
+    Habits: 22,
   },
 ];
 
 export function AreaChartHero() {
   return (
     <LineChart
-      className="h-60 "
+      className="h-60 w-full"
       data={chartData}
       index="date"
       categories={["Projects", "Tasks", "Events", "Habits"]}
