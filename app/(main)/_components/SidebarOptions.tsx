@@ -1,7 +1,11 @@
 import { ChevronRight, CircleCheck } from "lucide-react";
 import * as React from "react";
 import { Separator } from "@/components/ui/separator";
-import { controlCollection } from "@/app/services/data";
+import {
+  controlCollection,
+  managementCollection,
+  notionCollection,
+} from "@/app/services/data";
 import { usePathname } from "next/navigation";
 import { controlNav, notionNav, managmentNav } from "../data/sideBarMenu";
 import Link from "next/link";
@@ -15,31 +19,37 @@ interface SidebarMenu {
 }
 
 const SidebarOptions: React.FC = () => {
-  const controlData = controlCollection;
   const pathname = usePathname();
-  const [sidebarItem, setSidebarItem] = React.useState<SidebarMenu[]>([]);
 
-  // Función para establecer el menú lateral inicial
+  const [subItems, setSubItems] = React.useState<Object[]>(
+    controlCollection.habits
+  );
+  const [sidebarItem, setSidebarItem] =
+    React.useState<SidebarMenu[]>(controlNav);
+
   const initializeSidebar = () => {
     if (pathname === "/control/day") {
       setSidebarItem(controlNav);
+      setSubItems(controlCollection.habits);
     } else if (pathname === "/managment/day") {
       setSidebarItem(managmentNav);
+      setSubItems(managementCollection.tasks);
     } else if (pathname === "/notion/day") {
       setSidebarItem(notionNav);
+      setSubItems(notionCollection.notes);
     }
   };
 
-  // Llama a la función de inicialización al montar el componente
   React.useEffect(() => {
     initializeSidebar();
-  }, []); // Sin dependencias para asegurar que se ejecute solo una vez al montar el componente
+  }, []);
 
   const renderSidebarItem = (item: SidebarMenu) => {
     return (
       <Link
         href={item.src ? item.src : "#"}
-        className={`flex py-2 ${pathname === item.src && "bg-main-2/10 rounded-lg text-main-2"}`}>
+        className={`flex py-2 ${pathname === item.src && "bg-main-2/10 rounded-lg text-main-2"}`}
+        key={item.label}>
         <li className={`flex items-center  cursor-pointer`} key={item.label}>
           {item.icon}
           <p className="">{item.label}</p>
@@ -48,7 +58,7 @@ const SidebarOptions: React.FC = () => {
     );
   };
 
-  const renderSubmenuItems = (items: SidebarMenu[]) => {
+  const renderSubmenuItems = (items: SidebarMenu[], subItems: any) => {
     return items.map((submenu) => (
       <div className="py-2 pl-1 cursor-pointer" key={submenu.label}>
         <div className="flex items-center ">
@@ -56,10 +66,13 @@ const SidebarOptions: React.FC = () => {
           <p className="line-clamp-1">{submenu.label}</p>
         </div>
         <ul className="pl-2">
-          {controlData.habits.map((habit, id) => (
-            <li className="flex items-center py-2 cursor-pointer" key={id}>
+          {/* Renderizamos los hábitos específicos de cada colección */}
+          {subItems?.map((item: any) => (
+            <li
+              className="flex items-center py-2 cursor-pointer"
+              key={item.name}>
               <CircleCheck size={10} width={24} />
-              <p className="line-clamp-1">{habit.name}</p>
+              <p className="line-clamp-1">{item.name || item.title}</p>
             </li>
           ))}
         </ul>
@@ -78,13 +91,18 @@ const SidebarOptions: React.FC = () => {
               <>
                 <Link
                   href={menu.src ? menu.src : ""}
-                  className={`flex py-2 ${pathname === menu.src && "bg-main-2/15 rounded-lg text-main-2"}`}>
-                  <li className="flex items-center cursor-pointer">
+                  className={`flex py-2 ${pathname === menu.src && "bg-main-2/15 rounded-lg text-main-2"}`}
+                  key={menu.label}>
+                  <li
+                    className="flex items-center cursor-pointer"
+                    key={menu.label}>
                     {menu.icon}
                     <p className="">{menu.label}</p>
                   </li>
                 </Link>
-                {menu.items && renderSubmenuItems(menu.items)}
+                {/* Renderizamos los submenús */}
+                {menu.items && renderSubmenuItems(menu.items, subItems)}
+                {}
               </>
             ) : menu.type === "button" ? (
               renderButton(menu)
