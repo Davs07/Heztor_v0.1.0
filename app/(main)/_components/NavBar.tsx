@@ -23,11 +23,11 @@ function NavB() {
     <>
       <div
         className={cn(
-          "group/navigation relative flex flex-col items-center gap-[3vh] w-16 min-w-16 bg-white dark:bg-main-superdark border-r border-slate-200 dark:border-slate-50  overflow-hidden  h-full z-[9999999] px-[8px] py-3  "
+          "group/navigation relative flex flex-col items-center justify-between w-16 min-w-16 bg-white dark:bg-main-superdark border-r border-slate-200 dark:border-slate-50  overflow-hidden  h-full z-[9999999] px-[8px] py-3  "
         )}>
         <HeztorIcon className="size-10" />
         <div
-          className={cn("w-full h-full flex justify-center items-start my-3")}>
+          className={cn("w-full h-full flex justify-center items-center ")}>
           <ul
             className={cn(
               "flex flex-col justify-center items-center gap-4 text-slate-700 dark:text-white"
@@ -70,7 +70,6 @@ function NavB() {
             size={"none"}>
             <Plus />
           </Button>
-          <Plus color="white" />
         </div>
       </div>
     </>
