@@ -1,21 +1,28 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle } from "lucide-react";
+import {
+  ChevronsLeft,
+  ChevronsRight,
+  MenuIcon,
+  PlusCircle,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import SidebarOptions from "./SidebarOptions";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api.js";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import Item from "./Item";
+import { toast } from "sonner";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 760px)");
 
   const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -97,6 +104,19 @@ export default function Sidebar() {
     }
   };
 
+  const handleCreate = () => {
+    const promise = create({
+      title: "Sin título",
+    });
+
+    toast.promise(promise, {
+      loading: "Creando una nueva nota...",
+      success: "Nota creada",
+      error: "Error al crear la nota",
+    });
+
+  };
+
   return (
     <>
       <aside
@@ -118,7 +138,7 @@ export default function Sidebar() {
           <ChevronsLeft className="h-6 w-6" />
         </div> */}
 
-        <Item onClick={() => {}} label="New Page" icon={PlusCircle} />
+        <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
 
         {/* <SidebarOptions /> */}
 
