@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 function page() {
-  return redirect("/notion/day");
+  return redirect("/documents/day");
 }
 
 export default page;

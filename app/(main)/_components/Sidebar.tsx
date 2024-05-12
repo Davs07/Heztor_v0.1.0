@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, ChevronsRight, MenuIcon } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, MenuIcon, PlusCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -9,6 +9,7 @@ import SidebarOptions from "./SidebarOptions";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api.js";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import Item from "./Item";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -107,7 +108,7 @@ export default function Sidebar() {
         )}>
         {/* <h3 className="absolute left-5 top-2 text-main-2 font-medium">Control</h3> */}
 
-        <div
+        {/* <div
           onClick={collapse}
           role="button"
           className={cn(
@@ -115,14 +116,17 @@ export default function Sidebar() {
             isMobile && "opacity-100"
           )}>
           <ChevronsLeft className="h-6 w-6" />
-        </div>
+        </div> */}
 
-        <SidebarOptions />
-        {/* <div>
+        <Item onClick={() => {}} label="New Page" icon={PlusCircle} />
+
+        {/* <SidebarOptions /> */}
+
+        <div>
           {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
           ))}
-        </div> */}
+        </div>
 
         <div
           onMouseDown={handleMouseDown}

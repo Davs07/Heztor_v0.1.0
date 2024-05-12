@@ -36,9 +36,9 @@ const navigation = [
     icon: <FolderKanban size={18} />,
   },
   {
-    title: "Carpeta",
-    src: "/folder/day",
-    source: "/folder",
+    title: "Documentos",
+    src: "/documents/day",
+    source: "/documents",
     icon: <FolderPen size={18} />,
   },
   {

@@ -55,12 +55,12 @@ const chartData = [
 
 export function AreaChartHero() {
   return (
-    <LineChart
+    <BarChart
       className="h-60 w-full"
       data={chartData}
       index="date"
-      categories={["Projects", "Tasks", "Events", "Habits"]}
-      colors={["teal", "sky", "purple", "rose"]}
+      categories={["Tasks", "Events"]}
+      colors={["sky", "rose"]}
       onValueChange={(value) => console.log(value)}
     />
   );

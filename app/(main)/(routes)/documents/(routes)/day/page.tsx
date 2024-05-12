@@ -12,7 +12,7 @@ function NotesPage() {
 
   const onCreate = () => {
     const promise = create({
-      title: "Notes",
+      title: "Sin título",
     });
 
     toast.promise(promise, {
