@@ -18,6 +18,7 @@ import { api } from "@/convex/_generated/api.js";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import Item from "./Item";
 import { toast } from "sonner";
+import { DocumentList } from "./document-list";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -141,11 +142,7 @@ export default function Sidebar() {
 
         <Item label="Buscar" icon={Search} isSearch onClick={() => {}} />
 
-        <Item
-          onClick={()=>{}}
-          label="Configuración"
-          icon={Settings}
-        />
+        <Item onClick={() => {}} label="Configuración" icon={Settings} />
         <Item
           onClick={handleCreate}
           label="Crear Documento"
@@ -155,9 +152,7 @@ export default function Sidebar() {
         {/* <SidebarOptions /> */}
 
         <div>
-          {documents?.map((document) => (
-            <div key={document._id}>{document.title}</div>
-          ))}
+          <DocumentList />
         </div>
 
         <div

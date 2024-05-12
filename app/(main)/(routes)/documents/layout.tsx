@@ -4,7 +4,7 @@ const NotesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
       <div className="h-full flex ">
         <Sidebar />
-        <main>{children}</main>
+        <main className="w-full">{children}</main>
       </div>
   );
 };

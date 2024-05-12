@@ -23,7 +23,7 @@ function NotesPage() {
   };
 
   return (
-    <div className="w-full h-full  flex items-center justify-center bg-main-superlight dark:bg-main-superdark fixed">
+    <div className="w-full h-full  flex items-center justify-center bg-main-superlight dark:bg-main-superdark ">
 
       <Button onClick={onCreate} className="">
         <PlusCircle />
