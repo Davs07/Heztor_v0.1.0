@@ -138,7 +138,7 @@ export default function Sidebar() {
           <ChevronsLeft className="h-6 w-6" />
         </div> */}
 
-        <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
+        <Item onClick={handleCreate} label="Crear Documento" icon={PlusCircle} />
 
         {/* <SidebarOptions /> */}
 
