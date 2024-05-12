@@ -6,6 +6,8 @@ import {
   ChevronsRight,
   MenuIcon,
   PlusCircle,
+  Search,
+  Settings,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
@@ -114,7 +116,6 @@ export default function Sidebar() {
       success: "Nota creada",
       error: "Error al crear la nota",
     });
-
   };
 
   return (
@@ -138,7 +139,18 @@ export default function Sidebar() {
           <ChevronsLeft className="h-6 w-6" />
         </div> */}
 
-        <Item onClick={handleCreate} label="Crear Documento" icon={PlusCircle} />
+        <Item label="Buscar" icon={Search} isSearch onClick={() => {}} />
+
+        <Item
+          onClick={()=>{}}
+          label="Configuración"
+          icon={Settings}
+        />
+        <Item
+          onClick={handleCreate}
+          label="Crear Documento"
+          icon={PlusCircle}
+        />
 
         {/* <SidebarOptions /> */}
 
