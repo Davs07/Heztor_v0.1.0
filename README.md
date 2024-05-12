@@ -7,18 +7,19 @@ Heztor es tu aliado digital para una vida más organizada y productiva. Es una a
 
 ## **Funcionalidades:**
 
-Con Heztor, puedes administrar tus finanzas, crear y gestionar tareas, agregar notas importantes y mucho más, todo desde una sola plataforma intuitiva y fácil de usar.
+¡Descubre todo lo que puedes hacer con Heztor y lleva la gestión de tu vida al siguiente nivel!
 
-- Mantén tus finanzas en orden: Registra tus transacciones financieras, mantén un seguimiento de tus gastos e ingresos, y mantén un control total sobre tu situación económica.
-- Organiza tus tareas: Crea listas de tareas, asigna prioridades, establece fechas de vencimiento y mantén un registro claro de tus responsabilidades diarias.
-- Toma notas rápidas: Captura ideas, pensamientos y recordatorios importantes con la función de notas integrada, para que nunca pierdas de vista tus pensamientos más importantes.
+- Control Financiero: Con Heztor, tendrás el control total de tus finanzas. Registra tus transacciones, sigue tus gastos e ingresos, y mantén un ojo en tu salud financiera en todo momento.
 
-¡Únete a nuestra comunidad y simplifica tu vida con Heztor!
+- Gestión de Proyectos: Organiza tu trabajo de manera eficiente con la gestión de proyectos integrada. Crea tareas, asigna prioridades, establece fechas límite y colabora con tu equipo para alcanzar tus objetivos.
 
-1. **Gestión de Tareas ():** Crea listas de tareas, asigna prioridades, establece fechas de vencimiento y realiza un seguimiento de tu progreso.
-2. **Seguimiento de Hábitos ():** Registra tus hábitos diarios, establece metas y visualiza tu progreso a lo largo del tiempo.
-3. **Control Financiero (Mantén tus finanzas en orden):** Gestiona tus ingresos y gastos, registra operaciones, establece presupuestos y mantén un balance saludable en tus cuentas.
-4. **Organizador de Anotaciones (Toma notas rápidas) //No oficial**: Captura ideas, pensamientos y recordatorios importantes con la función de notas integrada, para que nunca pierdas de vista tus pensamientos más importantes.
+Tomar Notas Simplificado: ¡Captura tus ideas al vuelo! Con la función de notas de Heztor, puedes registrar rápidamente tus pensamientos, recordatorios y listas de tareas pendientes para mantener tu mente organizada y enfocada.
+
+Seguimiento de Hábitos: ¡Construye mejores hábitos con Heztor! Establece metas, realiza un seguimiento de tu progreso y alcanza tus objetivos personales con nuestras herramientas de seguimiento de hábitos.
+
+Diario Personal: Guarda tus recuerdos y reflexiones en nuestro diario personal. Registra tus emociones, experiencias y momentos destacados para preservar tus recuerdos más preciados.
+
+¡Con Heztor, tienes todo lo que necesitas para organizar tu vida de manera efectiva y hacer más en menos tiempo!
 
 ## **Soluciones:**
 
