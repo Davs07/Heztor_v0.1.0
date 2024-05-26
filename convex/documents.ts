@@ -39,7 +39,7 @@ export const archive = mutation({
           isArchived: true,
         });
 
-        await recursiveArchive(child._id)
+        await recursiveArchive(child._id);
       }
     };
 
@@ -47,7 +47,7 @@ export const archive = mutation({
       isArchived: true,
     });
 
-    recursiveArchive(args.id)
+    recursiveArchive(args.id);
 
     return document;
   },
@@ -113,5 +113,25 @@ export const create = mutation({
     });
 
     return document;
+  },
+});
+
+export const getSearch = query({
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .filter((q) => q.eq(q.field("isArchived"), false))
+      .order("desc")
+      .collect();
+
+      return documents
   },
 });
